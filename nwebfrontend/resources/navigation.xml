@@ -1,0 +1,29 @@
+<navigations>
+    <navigation>
+        <view>NSecViewLogin</view>
+        <initial>true</initial>
+        <rules>
+            <rule>
+                <outcome>SUCCESS</outcome>
+                <view>NMedViewDashBoard</view>
+            </rule>
+            <rule>
+                <outcome>REGISTER</outcome>
+                <view>NSecViewRegister</view>
+            </rule>
+        </rules>
+    </navigation>
+    <navigation>
+        <view>NSecViewRegister</view>
+        <rules>
+            <rule>
+                <outcome>CANCEL</outcome>
+                <view>NSecViewLogin</view>
+            </rule>
+            <rule>
+                <outcome>REGISTER</outcome>
+                <view>NSecViewLogin</view>
+            </rule>
+        </rules>
+    </navigation>
+</navigations>

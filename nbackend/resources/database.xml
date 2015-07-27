@@ -1,0 +1,20 @@
+<databases>
+    <database>
+        <name>security</name>
+        <host>localhost</host>
+        <port>3306</port>
+        <user>nox</user>
+        <password>FireFox125</password>
+        <schema>nox</schema>
+        <type>MySql</type>
+    </database>
+    <database>
+        <name>infrastructure</name>
+        <host>localhost</host>
+        <port>3306</port>
+        <user>nox</user>
+        <password>FireFox125</password>
+        <schema>nox</schema>
+        <type>MySql</type>
+    </database>
+</databases>

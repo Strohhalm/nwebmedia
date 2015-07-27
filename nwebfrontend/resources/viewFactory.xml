@@ -1,0 +1,12 @@
+<factories>
+    <factory>
+        <name>NViewSecurityFactory</name>
+        <component>security</component>
+        <library>NWebSecurity</library>
+    </factory>
+    <factory>
+        <name>NViewMediaFactory</name>
+        <component>media</component>
+        <library>NWebMedia</library>
+    </factory>
+</factories>

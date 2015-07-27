@@ -1,0 +1,3 @@
+add_library(NServiceExchange SHARED INServiceExchange.h INServiceExchange.cpp NServiceControl.cpp NServiceControl.h NServiceContext.cpp NServiceContext.h NServiceError.cpp NServiceError.h NServiceResponseHead.cpp NServiceResponseHead.h IINServiceResponse.cpp IINServiceResponse.h INServiceResponse.cpp INServiceResponse.h NServiceRequestHead.cpp NServiceRequestHead.h IINServiceRequest.cpp IINServiceRequest.h INServiceRequest.cpp INServiceRequest.h)
+
+target_link_libraries(NServiceExchange PUBLIC NBase)

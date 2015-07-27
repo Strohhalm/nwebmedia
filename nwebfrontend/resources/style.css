@@ -1,0 +1,55 @@
+body
+{
+    width: 100%;
+}
+
+div.container
+{
+    border: gray solid;
+    border-radius: 10px;
+}
+
+div.panel
+{
+    border-radius: 0 20px 20px 20px;
+}
+
+div.panel div.titlebar
+{
+    border-radius: 0 20px 0 0;
+}
+
+div.panel div.titlebar span
+{
+    font-family: arial;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+div.label span
+{
+    font-family: arial;
+    font-weight: bold;
+    height: 30px;
+}
+
+div.small span
+{
+    font-size: 10pt;
+    height: 15px;
+}
+
+input.input
+{
+    font-family: arial;
+    font-size: 12pt;
+    height: 30px;
+}
+
+button.button
+{
+    font-family: arial;
+    font-size: 12pt;
+    height: 30px;
+    width: 100px;
+}

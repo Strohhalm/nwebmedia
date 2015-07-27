@@ -1,0 +1,32 @@
+//
+// Created by strohhalm on 01.07.15.
+//
+
+#ifndef NWEBMEDIA_INSERVICECLIENTUSER_H
+#define NWEBMEDIA_INSERVICECLIENTUSER_H
+
+#include <nserviceclient/NServiceClientDefines.h>
+#include <nservicesecurity/exchange/NServiceUserExchange.h>
+
+using namespace nox::service::exchange::security;
+
+namespace nox
+{
+    namespace service
+    {
+        namespace client
+        {
+            namespace security
+            {
+                class INServiceClientUser
+                {
+                public:
+                    DeclareServiceClientIFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, readUserByName);
+                    DeclareServiceClientIFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, loginUser);
+                };
+            }
+        }
+    }
+}
+
+#endif //NWEBMEDIA_INSERVICECLIENTUSER_H

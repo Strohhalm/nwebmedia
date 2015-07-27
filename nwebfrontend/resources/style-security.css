@@ -1,0 +1,19 @@
+div.login
+{
+    position:absolute;
+    top: 150px;
+    left: 50%;
+    width: 300px;
+    margin-rigth: -50%;
+    transform: translate(-50%, 50%);
+}
+
+div.register
+{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 300px;
+    margin-rigth: -50%;
+    transform: translate(-50%, 20%);
+}

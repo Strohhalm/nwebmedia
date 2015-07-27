@@ -1,0 +1,5 @@
+
+
+add_library(NModel SHARED INModelColumn.cpp INModelColumn.h NModelColumn.cpp NModelColumn.h INModel.cpp INModel.h INModelAccess.cpp INModelAccess.h INValidTimeModel.cpp INValidTimeModel.h
+INTypedResultSet.cpp INTypedResultSet.h INPreparedStatement.cpp INPreparedStatement.h NParameter.cpp NParameter.h INParameter.cpp INParameter.h config/NConnectionConfig.cpp config/NConnectionConfig.h
+config/NConnectionConfigFile.cpp config/NConnectionConfigFile.h enumeration/NConnectionType.cpp enumeration/NConnectionType.h NSqlBuilder.cpp NSqlBuilder.h config/NConnectionConfigCache.cpp config/NConnectionConfigCache.h INConnection.cpp INConnection.h INTransaction.cpp INTransaction.h NTransactionPool.cpp NTransactionPool.h INStatement.cpp INStatement.h INResultSet.cpp INResultSet.h NResultType.h NTypedResultSet.cpp NTypedResultSet.h)

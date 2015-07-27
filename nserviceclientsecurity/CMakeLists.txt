@@ -1,0 +1,5 @@
+
+
+add_library(NServiceClientSecurity SHARED NServiceClientUser.cpp NServiceClientUser.h NServiceClientSecurity.h NServiceClientSecurityFactory.cpp NServiceClientSecurityFactory.h NServiceClientSecurityEntryPoint.cpp INServiceClientUser.h)
+
+target_link_libraries(NServiceClientSecurity PUBLIC NBase NServiceClient NServiceSecurityExchange ${LIBRARIES})

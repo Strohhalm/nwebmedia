@@ -1,0 +1,7 @@
+div.header
+{
+    position: fixed;
+    width: 90%;
+    left: 5%;
+    height: 60px;
+}

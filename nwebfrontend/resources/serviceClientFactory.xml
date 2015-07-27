@@ -1,0 +1,12 @@
+<factories>
+    <factory>
+        <name>NServiceClientSecurityFactory</name>
+        <component>security</component>
+        <library>NServiceClientSecurity.so</library>
+    </factory>
+    <factory>
+        <name>NServiceClientInfraFactory</name>
+        <component>infrastructure</component>
+        <library>NServiceClientInfra.so</library>
+    </factory>
+</factories>

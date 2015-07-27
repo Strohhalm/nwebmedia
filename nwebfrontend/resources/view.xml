@@ -1,0 +1,17 @@
+<views>
+    <view>
+        <name>NSecViewLogin</name>
+        <component>security</component>
+        <factory>NViewSecurityFactory</factory>
+    </view>
+    <view>
+        <name>NSecViewRegister</name>
+        <component>security</component>
+        <factory>NViewSecurityFactory</factory>
+    </view>
+    <view>
+        <name>NMedViewDashBoard</name>
+        <component>media</component>
+        <factory>NViewMediaFactory</factory>
+    </view>
+</views>

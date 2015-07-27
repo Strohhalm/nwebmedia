@@ -1,0 +1,5 @@
+
+
+add_library(NServiceClientInfra SHARED INServiceClientLocalisation.h NServiceClientLocalisation.cpp NServiceClientLocalisation.h NServiceClientInfraEntryPoint.cpp NServiceClientInfraFactory.cpp NServiceClientInfraFactory.h NServiceClientInfra.h NServiceClientKeyProvider.cpp NServiceClientKeyProvider.h INServiceClientKeyProvider.h)
+
+target_link_libraries(NServiceClientInfra PUBLIC NBase NServiceClient NServiceInfraExchange ${LIBRARIES})

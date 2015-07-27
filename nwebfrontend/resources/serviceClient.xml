@@ -1,0 +1,26 @@
+<serviceClients>
+    <serviceClient>
+        <name>NServiceClientUser</name>
+        <host>localhost</host>
+        <port>35000</port>
+        <component>security</component>
+        <factory>NServiceClientSecurityFactory</factory>
+        <protocol>TCP</protocol>
+    </serviceClient>
+    <serviceClient>
+        <name>NServiceClientLocalisation</name>
+        <host>localhost</host>
+        <port>35001</port>
+        <component>infrastructure</component>
+        <factory>NServiceClientInfraFactory</factory>
+        <protocol>TCP</protocol>
+    </serviceClient>
+    <serviceClient>
+        <name>NServiceClientKeyProvider</name>
+        <host>localhost</host>
+        <port>35002</port>
+        <component>infrastructure</component>
+        <factory>NServiceClientInfraFactory</factory>
+        <protocol>TCP</protocol>
+    </serviceClient>
+</serviceClients>

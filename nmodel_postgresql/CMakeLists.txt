@@ -1,0 +1,5 @@
+
+
+add_library(NModel_PostgreSql SHARED NModelPostgreSql.h NPostgreSqlConnection.cpp NPostgreSqlConnection.h NPostgreSqlPreparedStatement.cpp NPostgreSqlPreparedStatement.h NPostgreSqlResultSet.cpp NPostgreSqlResultSet.h NModelPostgeSqlEntryPoint.cpp)
+
+target_link_libraries(NModel_PostgreSql PUBLIC NBase NModel ${LIBRARIES} pqxx)

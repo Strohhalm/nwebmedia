@@ -1,0 +1,3 @@
+add_library(NServiceInfraExchange SHARED NServiceLocalisationExchange.cpp NServiceLocalisationExchange.h NLocalisationKey.cpp NLocalisationKey.h NLocalisationValue.cpp NLocalisationValue.h NLocalisationEntry.cpp NLocalisationEntry.h NLocalisationPortion.cpp NLocalisationPortion.h NLocalizeRequest.cpp NLocalizeRequest.h NLocalizeResponse.cpp NLocalizeResponse.h NLocalisationRequest.cpp NLocalisationRequest.h NLocalisationList.cpp NLocalisationList.h NLocalisationResponse.cpp NLocalisationResponse.h NKeyProviderKeyReference.cpp NKeyProviderKeyReference.h NKeyProviderKey.cpp NKeyProviderKey.h NKeyProviderRequest.cpp NKeyProviderRequest.h NKeyProviderResponse.cpp NKeyProviderResponse.h NServiceKeyProviderExchange.h)
+
+target_link_libraries(NServiceInfraExchange PUBLIC NBase)

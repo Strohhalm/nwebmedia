@@ -1,0 +1,5 @@
+
+
+add_library(NServiceClient SHARED INServiceClient.cpp INServiceClient.h INServiceClientFactory.cpp INServiceClientFactory.h IINServiceClient.cpp IINServiceClient.h config/NServiceClientConfig.cpp config/NServiceClientConfig.h config/NServiceClientConfigFile.cpp config/NServiceClientConfigFile.h config/NServiceClientConfigCache.cpp config/NServiceClientConfigCache.h NServiceClientProvider.cpp NServiceClientProvider.h config/NServiceClientFactoryConfig.cpp config/NServiceClientFactoryConfig.h config/NServiceClientFactoryConfigFile.cpp config/NServiceClientFactoryConfigFile.h config/NServiceClientFactoryConfigCache.cpp config/NServiceClientFactoryConfigCache.h INServiceClientApplication.cpp INServiceClientApplication.h NServiceClientDefines.h)
+
+target_link_libraries(NServiceClient PUBLIC NBase NServiceExchange ${LIBRARIES})

@@ -1,0 +1,6 @@
+
+add_subdirectory(exchange)
+
+add_library(NService SHARED NService.h INService.cpp INService.h NServiceProvider.cpp NServiceProvider.h network/NServiceConnectionTcp.cpp network/NServiceConnectionTcp.h network/NServiceConnectionUdp.cpp network/NServiceConnectionUdp.h INServiceFactory.cpp INServiceFactory.h config/NServiceConfig.cpp config/NServiceConfig.h IINServiceFactory.cpp IINServiceFactory.h config/NServiceConfigFile.cpp config/NServiceConfigFile.h config/NServiceFactoryConfig.cpp config/NServiceFactoryConfig.h config/NServiceFactoryConfigFile.cpp config/NServiceFactoryConfigFile.h config/NServiceConfigCache.cpp config/NServiceConfigCache.h config/NServiceFactoryConfigCache.cpp config/NServiceFactoryConfigCache.h INServiceApplication.cpp INServiceApplication.h network/NServiceServerSocketTcp.cpp network/NServiceServerSocketTcp.h network/NServiceServerSocketUdp.cpp network/NServiceServerSocketUdp.h IINService.cpp IINService.h NServiceDefines.h )
+
+target_link_libraries(NService PUBLIC NBase NModel NServiceExchange ${LIBRARIES})
