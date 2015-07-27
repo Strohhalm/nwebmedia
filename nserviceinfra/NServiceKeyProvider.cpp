@@ -52,9 +52,9 @@ namespace nox
                             else
                             {
                                 result = new NInfKeysModel();
-                                result->setKeyClass(new NString(input->getData().getKeyClass()));
-                                result->setComponent(new NString(input->getData().getComponent()));
-                                result->setKeyValue(new NLong(1));
+                                result->setKeyClass(input->getData().getKeyClass());
+                                result->setComponent(input->getData().getComponent());
+                                result->setKeyValue(1);
 
                                 access.insert(*result);
                             }
@@ -63,9 +63,9 @@ namespace nox
                         else
                         {
                             result = new NInfKeysModel();
-                            result->setKeyClass(new NString(input->getData().getKeyClass()));
-                            result->setComponent(new NString(input->getData().getComponent()));
-                            result->setKeyValue(new NLong(1));
+                            result->setKeyClass(input->getData().getKeyClass());
+                            result->setComponent(input->getData().getComponent());
+                            result->setKeyValue(1);
 
                             access.insert(*result);
                         }
