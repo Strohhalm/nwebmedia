@@ -26,6 +26,8 @@ namespace nox
                 virtual void update(const NSecUserModel & model);
                 virtual INTypedResultSet<NSecUserModel> * read(const NLong & userId);
                 virtual INTypedResultSet<NSecUserModel> * readUserByName(const NString & username);
+                virtual INTypedResultSet<NSecUserModel> * readUserByName(const NString & username, const NDate & date);
+                virtual INTypedResultSet<NSecUserModel> * readUserByName(const NString & username, const NBool & active);
                 virtual INTypedResultSet<NSecUserModel> * readUserByName(const NString & username, const NBool & active, const NDate & date);
                 virtual INTypedResultSet<NSecUserModel> * readUserByGroupName(const NString & groupname, const NBool & active, const NDate & date, nlong from = 0, nlong count = LONG_MAX);
                 virtual nint compareTo(const INObject * other) const;
