@@ -200,7 +200,7 @@ namespace nox
             {
                 INIT_SQL_SECTION
 
-                INPreparedStatement * statement = getPreparedStatement("READ_BY_USERNAME_ACTIVE_DATE");
+                INPreparedStatement * statement = getPreparedStatement("READ_BY_USERNAME_ACTIVE");
 
                 if (statement->getStatement().length() <= 0)
                 {
@@ -235,7 +235,7 @@ namespace nox
             {
                 INIT_SQL_SECTION
 
-                INPreparedStatement * statement = getPreparedStatement("READ_BY_USERNAME_ACTIVE_DATE");
+                INPreparedStatement * statement = getPreparedStatement("READ_BY_USERNAME_DATE");
 
                 if (statement->getStatement().length() <= 0)
                 {
