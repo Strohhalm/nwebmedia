@@ -195,6 +195,78 @@ namespace nox
 
                 return new NTypedResultSet<NSecUserModel>(statement->getResultSet());
             }
+            
+            INTypedResultSet<NSecUserModel> * NSecUserModelAccess::readUserByName(const NString & username, const NBool & active)
+            {
+                INIT_SQL_SECTION
+
+                INPreparedStatement * statement = getPreparedStatement("READ_BY_USERNAME_ACTIVE_DATE");
+
+                if (statement->getStatement().length() <= 0)
+                {
+//@formatter:off
+                    SELECT FI(U.ID) COMMA
+                           FI(U.VALID_FROM) COMMA
+                           FI(U.VALID_TO) COMMA
+                           FI(U.USER_NAME) COMMA
+                           FI(U.PASSWORD) COMMA
+                           FI(U.FIRST_NAME) COMMA
+                           FI(U.LAST_NAME) COMMA
+                           FI(U.EMAIL) COMMA
+                           FI(U.ACTIVE)
+                      FROM TA(NOX_SEC_USER) QU(U)
+                     WHERE FI(U.USER_NAME) EQ PA(username)
+                       AND FI(U.ACTIVE) EQ PA(active)
+//@formatter:on
+                    statement->setStatement(SQL_STRING);
+                }
+
+                statement->clearParameters();
+                statement->addParameter(CreateNamedParameter(username, NString, username));
+                statement->addParameter(CreateNamedParameter(active, NBool, active));
+
+                statement->prepare();
+                statement->executeQuery();
+
+                return new NTypedResultSet<NSecUserModel>(statement->getResultSet());
+            }
+            
+            INTypedResultSet<NSecUserModel> * NSecUserModelAccess::readUserByName(const NString & username, const NDate & date)
+            {
+                INIT_SQL_SECTION
+
+                INPreparedStatement * statement = getPreparedStatement("READ_BY_USERNAME_ACTIVE_DATE");
+
+                if (statement->getStatement().length() <= 0)
+                {
+//@formatter:off
+                    SELECT FI(U.ID) COMMA
+                           FI(U.VALID_FROM) COMMA
+                           FI(U.VALID_TO) COMMA
+                           FI(U.USER_NAME) COMMA
+                           FI(U.PASSWORD) COMMA
+                           FI(U.FIRST_NAME) COMMA
+                           FI(U.LAST_NAME) COMMA
+                           FI(U.EMAIL) COMMA
+                           FI(U.ACTIVE)
+                      FROM TA(NOX_SEC_USER) QU(U)
+                     WHERE FI(U.USER_NAME) EQ PA(username)
+                       AND FI(U.VALID_FROM) LT_OR_EQ PA(date)
+                       AND LEFT_BRACKET FI(U.VALID_TO) GT_OR_EQ PA(date) OR
+                                        FI(U.VALID_TO) IS_NULL RIGHT_BRACKET
+//@formatter:on
+                    statement->setStatement(SQL_STRING);
+                }
+
+                statement->clearParameters();
+                statement->addParameter(CreateNamedParameter(username, NString, username));
+                statement->addParameter(CreateNamedParameter(date, NDate, date));
+
+                statement->prepare();
+                statement->executeQuery();
+
+                return new NTypedResultSet<NSecUserModel>(statement->getResultSet());
+            }
 
             INTypedResultSet<NSecUserModel> * NSecUserModelAccess::readUserByName(const NString & username, const NBool & active,
                                                                              const NDate & date)
