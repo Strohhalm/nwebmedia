@@ -22,6 +22,11 @@ namespace nox
 
                 DefineServiceClientFunction(NKeyProviderResponse, NKeyProviderRequest, NServiceKeyProvider, NServiceClientKeyProvider, determineNextKey)
 
+                void NServiceClientKeyProvider::release()
+                {
+                    delete this;
+                }
+
                 nint NServiceClientKeyProvider::compareTo(const INObject * other) const
                 {
                     if (this == other)

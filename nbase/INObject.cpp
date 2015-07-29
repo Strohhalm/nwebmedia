@@ -26,12 +26,12 @@ namespace nox
 
     nbool INObject::operator!=(const INObject & other) const
     {
-        return isEquals(other);
+        return !isEquals(other);
     }
 
     nbool INObject::operator!=(const INObject * other) const
     {
-        return isEquals(other);
+        return !isEquals(other);
     }
 
     nbool INObject::operator<(const INObject & other) const

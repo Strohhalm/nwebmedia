@@ -26,6 +26,11 @@ namespace nox
                 DefineServiceClientFunction(NCreateUserResponse, NCreateUserRequest, NServiceUser, NServiceClientUser, createUser);
                 DefineServiceClientFunction(NChangeUserResponse, NChangeUserRequest, NServiceUser, NServiceClientUser, changeUser)
 
+                void NServiceClientUser::release()
+                {
+                    delete this;
+                }
+
                 nint NServiceClientUser::compareTo(const INObject * other) const
                 {
                     if (this == other)

@@ -22,6 +22,7 @@ namespace nox
                     NServiceClientKeyProvider(IINClientSocket * socket);
                     virtual ~NServiceClientKeyProvider();
                     DeclareServiceClientFunction(NKeyProviderResponse, NKeyProviderRequest, determineNextKey);
+                    virtual void release();
                     virtual nint compareTo(const INObject * other) const;
                 };
             }

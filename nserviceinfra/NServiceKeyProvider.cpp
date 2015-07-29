@@ -16,12 +16,16 @@ namespace nox
             NServiceKeyProvider::NServiceKeyProvider(NServiceConfig & serviceConfig) : INService(serviceConfig)
             {
                 m_Mutex = new boost::mutex();
+
+                RegisterServiceFunction(determineNextKey)
             }
 
             NServiceKeyProvider::~NServiceKeyProvider()
             {
                 if (m_Mutex != NULL)
                     delete m_Mutex;
+
+                UnRegisterServiceFunction(determineNextKey)
             }
 
             NKeyProviderResponse * NServiceKeyProvider::determineNextKey(NKeyProviderRequest * input)

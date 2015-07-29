@@ -23,6 +23,7 @@ namespace nox
                     virtual ~NServiceClientLocalisation();
                     DeclareServiceClientFunction(NLocalizeResponse, NLocalizeRequest, localize);
                     DeclareServiceClientFunction(NLocalisationResponse, NLocalisationRequest, readLocalisation);
+                    virtual void release();
                     virtual nint compareTo(const INObject * other) const;
                 };
             }

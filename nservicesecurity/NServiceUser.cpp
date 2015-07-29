@@ -134,7 +134,7 @@ namespace nox
                     if (keyResponse != NULL)
                         delete keyResponse;
                     if (keyProvider != NULL)
-                        delete keyProvider;
+                        keyProvider->release();
                 }
                 catch (...)
                 {
@@ -143,7 +143,7 @@ namespace nox
                     if (keyResponse != NULL)
                         delete keyResponse;
                     if (keyProvider != NULL)
-                        delete keyProvider;
+                        keyProvider->release();
                     if (response != NULL)
                         delete response;
 

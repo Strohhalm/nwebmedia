@@ -8,7 +8,7 @@
 #include <nbase/NNullPointerException.h>
 
 #define NAssertNull(VALUE)                                                          \
-    NAssert(VALUE != NULL, NString(#VALUE).append("is NULL"));
+    NAssert(VALUE == NULL, NString(#VALUE).append("is NULL"));
    
     /*if (VALUE == NULL)                                                              \
         throw NNullPointerException(NString(#VALUE).append("is NULL"));*/

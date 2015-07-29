@@ -23,6 +23,11 @@ namespace nox
                 DefineServiceClientFunction(NLocalizeResponse, NLocalizeRequest, NServiceLocalisation, NServiceClientLocalisation, localize);
                 DefineServiceClientFunction(NLocalisationResponse, NLocalisationRequest, NServiceLocalisation, NServiceClientLocalisation, readLocalisation);
 
+                void NServiceClientLocalisation::release()
+                {
+                    delete this;
+                }
+
                 nint NServiceClientLocalisation::compareTo(const INObject * other) const
                 {
                     if (this == other)

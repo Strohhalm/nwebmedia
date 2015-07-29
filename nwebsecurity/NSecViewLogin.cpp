@@ -132,6 +132,7 @@ namespace nox
 
                     delete response;
                     delete request;
+                    client->release();
                 }
                 else
                 {

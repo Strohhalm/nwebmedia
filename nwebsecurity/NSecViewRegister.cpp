@@ -2,7 +2,12 @@
 // Created by strohhalm on 12.07.15.
 //
 
-#include "NSecViewRegister.h"
+#include <nwebsecurity/NSecViewRegister.h>
+#include <nserviceclient/NServiceClientProvider.h>
+#include <nserviceclientsecurity/INServiceClientUser.h>
+
+using namespace nox::service::client;
+using namespace nox::service::client::security;
 
 namespace nox
 {
@@ -164,7 +169,77 @@ namespace nox
 
             void NSecViewRegister::onRegister()
             {
+                INServiceClientUser * service = NULL;
+                NReadUserByNameRequest  * readUserRequest = NULL;
+                NReadUserByNameResponse * readUserResponse = NULL;
 
+                NCreateUserRequest  * createUserRequest = NULL;
+                NCreateUserResponse * createUserResponse = NULL;
+
+                try
+                {
+                    service = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>(NXS(NServiceClientUser));
+                    if (service != NULL)
+                    {
+                        readUserRequest = new NReadUserByNameRequest();
+                        readUserRequest->getData().setUsername(m_ledUsername->text().toUTF8());
+                        readUserRequest->getData().setState(BOTH);
+
+                        readUserResponse = service->readUserByName(readUserRequest);
+
+                        if (readUserResponse != NULL)
+                        {
+                            if (readUserResponse->getData().getId() != NInteger(0))
+                            {
+                                throw NRuntimeException("User does already exist");
+                            }
+                            else
+                            {
+                                createUserRequest = new NCreateUserRequest();
+                                createUserRequest->getData().setValidFrom(NDate::getCurrentDate());
+                                createUserRequest->getData().setUsername(m_ledUsername->text().toUTF8());
+                                createUserRequest->getData().setPassword(m_ledPassword->text().toUTF8());
+                                createUserRequest->getData().setFirstName(m_ledFirstName->text().toUTF8());
+                                createUserRequest->getData().setLastName(m_ledLastName->text().toUTF8());
+                                createUserRequest->getData().setEmail(m_ledEmail->text().toUTF8());
+                                createUserRequest->getData().setActive(false);
+
+                                createUserResponse = service->createUser(createUserRequest);
+
+                                if (createUserResponse != NULL)
+                                {
+                                    if (createUserRequest->getData().getId() == NInteger(0))
+                                    {
+                                       navigate("SUCCESS");
+                                    }
+                                    else
+                                    {
+                                        throw NRuntimeException(createUserResponse->getHead().getError().getMessage());
+                                    }
+                                    delete createUserResponse;
+                                }
+                                delete createUserRequest;
+                            }
+                            delete readUserResponse;
+                        }
+                        delete readUserRequest;
+                        service->release();
+                    }
+                }
+                catch (exception & exp)
+                {
+                    if (readUserRequest != NULL)
+                        delete readUserRequest;
+                    if (readUserResponse != NULL)
+                        delete readUserResponse;
+                    if (createUserRequest != NULL)
+                        delete createUserRequest;
+                    if (createUserResponse != NULL)
+                        delete createUserResponse;
+                    if (service != NULL)
+                        service->release();
+                    throw;
+                }
             }
 
             void NSecViewRegister::onCancel()

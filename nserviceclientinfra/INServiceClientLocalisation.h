@@ -6,6 +6,7 @@
 #define NWEBMEDIA_INSERVICECLIENTLOCALISATION_H
 
 #include <nserviceclient/NServiceClientDefines.h>
+#include <nserviceclient/IIINServiceClient.h>
 #include <nserviceinfra/exchange/NServiceLocalisationExchange.h>
 
 using namespace nox::service::exchange::infra;
@@ -18,7 +19,7 @@ namespace nox
         {
             namespace infra
             {
-                class INServiceClientLocalisation
+                class INServiceClientLocalisation : public IIINServiceClient
                 {
                 public:
                     DeclareServiceClientIFunction(NLocalizeResponse, NLocalizeRequest, localize)

@@ -25,6 +25,7 @@ namespace nox
                     DeclareServiceClientFunction(NReadUserByNameResponse, NReadUserByNameRequest, readUserByName);
                     DeclareServiceClientFunction(NCreateUserResponse, NCreateUserRequest, createUser);
                     DeclareServiceClientFunction(NChangeUserResponse, NChangeUserRequest, changeUser);
+                    virtual void release();
                     virtual nint compareTo(const INObject * other) const;
                 };
             }

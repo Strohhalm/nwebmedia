@@ -6,6 +6,7 @@
 #define NWEBMEDIA_INSERVICECLIENTUSER_H
 
 #include <nserviceclient/NServiceClientDefines.h>
+#include <nserviceclient/IIINServiceClient.h>
 #include <nservicesecurity/exchange/NServiceUserExchange.h>
 
 using namespace nox::service::exchange::security;
@@ -18,7 +19,7 @@ namespace nox
         {
             namespace security
             {
-                class INServiceClientUser
+                class INServiceClientUser : public IIINServiceClient
                 {
                 public:
                     DeclareServiceClientIFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, loginUser);

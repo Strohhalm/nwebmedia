@@ -6,6 +6,7 @@
 #define NWEBMEDIA_INSERVICECLIENTKEYPROVIDER_H
 
 #include <nserviceclient/NServiceClientDefines.h>
+#include <nserviceclient/IIINServiceClient.h>
 #include <nserviceinfra/exchange/NServiceKeyProviderExchange.h>
 
 using namespace nox::service::exchange::infra;
@@ -18,7 +19,7 @@ namespace nox
         {
             namespace infra
             {
-                class INServiceClientKeyProvider
+                class INServiceClientKeyProvider : public IIINServiceClient
                 {
                 public:
                     DeclareServiceClientIFunction(NKeyProviderResponse, NKeyProviderRequest, determineNextKey);

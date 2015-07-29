@@ -49,9 +49,9 @@ namespace nox
                 }
 
                 statement->clearParameters();
-                statement->addParameter(CreateNamedParameter(keyClass, NString, model.getKeyClass()));
-                statement->addParameter(CreateNamedParameter(component, NString, model.getComponent()));
-                statement->addParameter(CreateNamedParameter(keyValue, NLong, model.getKeyValue()));
+                statement->addParameter(CreateNamedParameter(keyClass, NString, *model.getKeyClass()));
+                statement->addParameter(CreateNamedParameter(component, NString, *model.getComponent()));
+                statement->addParameter(CreateNamedParameter(keyValue, NLong, *model.getKeyValue()));
 
                 statement->prepare();
                 if (statement->execute() <= 0)
@@ -80,9 +80,9 @@ namespace nox
                 }
 
                 statement->clearParameters();
-                statement->addParameter(CreateNamedParameter(keyClass, NString, model.getKeyClass()));
-                statement->addParameter(CreateNamedParameter(component, NString, model.getComponent()));
-                statement->addParameter(CreateNamedParameter(keyValue, NLong, model.getKeyValue()));
+                statement->addParameter(CreateNamedParameter(keyClass, NString, *model.getKeyClass()));
+                statement->addParameter(CreateNamedParameter(component, NString, *model.getComponent()));
+                statement->addParameter(CreateNamedParameter(keyValue, NLong, *model.getKeyValue()));
 
                 statement->prepare();
                 if (statement->execute() <= 0)

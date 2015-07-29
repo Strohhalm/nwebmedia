@@ -19,7 +19,7 @@ namespace nox
             {
             public:
                 DeclareModelValueFunction(KEY_CLASS, KeyClass, NString)
-                DeclareModelValueFunction(COMPONENT, Component,  NString)
+                DeclareModelValueFunction(COMPONENT, Component, NString)
                 DeclareModelValueFunction(KEY_VALUE, KeyValue, NLong)
             public:
                 NInfKeysModel();
