@@ -207,9 +207,72 @@ namespace nox
                 {
                     response = new NReadUserByNameResponse();
 
+                    switch (input->getData().getState())
+                    {
+                        case ACTIVE:
+                        {
+                            if (input->getData().getDueDate().isEquals(NDate::INVALID))
+                            {
+                                resultSet = access.readUserByName(input->getData().getUsername(),
+                                                                  true);
+                            }
+                            else
+                            {
+                                resultSet = access.readUserByName(input->getData().getUsername(),
+                                                                  true,
+                                                                  input->getData().getDueDate());
+                            }
+                            break;
+                        }
+                        case INACTIVE:
+                        {
+                            if (input->getData().getDueDate().isEquals(NDate::INVALID))
+                            {
+                                resultSet = access.readUserByName(input->getData().getUsername(),
+                                                                  false);
+                            }
+                            else
+                            {
+                                resultSet = access.readUserByName(input->getData().getUsername(),
+                                                                  false,
+                                                                  input->getData().getDueDate());
+                            }
+                            break;
+                        }
+                        case BOTH:
+                        {
+                            if (input->getData().getDueDate().isEquals(NDate::INVALID))
+                            {
+                                resultSet = access.readUserByName(input->getData().getUsername());
+                            }
+                            else
+                            {
+                                resultSet = access.readUserByName(input->getData().getUsername(),
+                                                                  input->getData().getDueDate());
+                            }
+                            break;
+                        }
+                    }
 
+                    if (resultSet != NULL)
+                    {
+                        if ((result = resultSet->next()) != NULL)
+                        {
+                            response->getData().setId(*result->getId());
+                            response->getData().setValidFrom(*result->getValidFrom());
+                            if (result->getValidTo() != NULL)
+                                response->getData().setValidTo(*result->getValidTo());
+                            response->getData().setUsername(*result->getUserName());
+                            response->getData().setPassword(*result->getPassword());
+                            response->getData().setFirstName(*result->getFirstName());
+                            response->getData().setLastName(*result->getLastName());
+                            response->getData().setEmail(*result->getEMail());
+                            response->getData().setActive(*result->getActive());
 
-
+                            delete result;
+                        }
+                        delete resultSet;
+                    }
                 }
                 catch (...)
                 {
