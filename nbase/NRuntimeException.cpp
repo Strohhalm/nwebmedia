@@ -2,7 +2,7 @@
 // Created by strohhalm on 27.05.15.
 //
 
-#include "NRuntimeException.h"
+#include <nbase/NRuntimeException.h>
 
 namespace nox
 {
