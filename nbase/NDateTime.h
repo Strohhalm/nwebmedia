@@ -5,9 +5,8 @@
 #ifndef NDATETIME_H
 #define NDATETIME_H
 
-#include <nbase/NBase.h>
-#include "NDate.h"
-#include "NTime.h"
+#include <nbase/NDate.h>
+#include <nbase/NTime.h>
 
 namespace nox
 {
@@ -20,6 +19,7 @@ namespace nox
     {
     public:
         static NDateTime getCurrentDateTime();
+        static const NDateTime INVALID;
     protected:
         NDate m_Date;
         NTime m_Time;
@@ -41,6 +41,10 @@ namespace nox
         virtual const nint getMinute() const;
         virtual const nint getSecond() const;
         virtual const nint getMillisecond() const;
+        virtual void set(const nint year, const nint month, const nint day);
+        virtual void set(const nint year, const nint month, const nint day, const nint hour, const nint minute, const nint second, const nint millisecond);
+        virtual void set(const NDate & date, const NTime & time);
+        virtual void set(const NDateTime & dateTime);
         virtual void addYears(const nint years);
         virtual void addMonths(const nint months);
         virtual void addDays(const nint days);
