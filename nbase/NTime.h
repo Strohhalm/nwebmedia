@@ -21,6 +21,7 @@ namespace nox
     {
     public:
         static NTime getCurrentTime();
+        static const NTime INVALID;
     protected:
         ntime m_Time;
         tm    m_tm;
