@@ -2,8 +2,8 @@
 // Created by strohhalm on 31.05.15.
 //
 
-#include "NDate.h"
-#include "NRuntimeException.h"
+#include <nbase/NDate.h>
+#include <nbase/NRuntimeException.h>
 
 namespace nox
 {
