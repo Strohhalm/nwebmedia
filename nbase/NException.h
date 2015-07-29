@@ -5,7 +5,6 @@
 #ifndef NEXCEPTION_H
 #define NEXCEPTION_H
 
-#include <nbase/NBase.h>
 #include <nbase/INObject.h>
 
 namespace nox
