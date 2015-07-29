@@ -2,7 +2,7 @@
 // Created by strohhalm on 27.05.15.
 //
 
-#include "NIndexOutOfBoundsException.h"
+#include <nbase/NIndexOutOfBoundsException.h>
 
 namespace nox
 {
