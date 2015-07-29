@@ -2,9 +2,7 @@
 // Created by strohhalm on 21.06.15.
 //
 
-#include "NPlugin.h"
-
-#include <locale>
+#include <nbase/plugin/NPlugin.h>
 
 #ifdef WINDOWS
     #error "Implement Windows path for library loading"
