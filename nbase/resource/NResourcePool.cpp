@@ -2,7 +2,7 @@
 // Created by strohhalm on 09.06.15.
 //
 
-#include "NResourcePool.h"
+#include <nbase/resource/NResourcePool.h>
 
 namespace nox
 {
