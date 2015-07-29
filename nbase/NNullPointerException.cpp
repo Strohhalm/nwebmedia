@@ -2,7 +2,7 @@
 // Created by strohhalm on 03.06.15.
 //
 
-#include "NNullPointerException.h"
+#include <nbase/NNullPointerException.h>
 
 namespace nox
 {
