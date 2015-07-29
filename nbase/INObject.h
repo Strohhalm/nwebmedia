@@ -6,6 +6,7 @@
 #define INOBJECT_H
 
 #include <nbase/NBase.h>
+#include <nbase/NTypes.h>
 
 namespace nox
 {
