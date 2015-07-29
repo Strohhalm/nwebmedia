@@ -8,8 +8,10 @@
 #include <nbase/NNullPointerException.h>
 
 #define NAssertNull(VALUE)                                                          \
-    if (VALUE == NULL)                                                              \
-        throw NNullPointerException(NString(#VALUE).append("is NULL"));
+    NAssert(VALUE != NULL, NString(#VALUE).append("is NULL"));
+   
+    /*if (VALUE == NULL)                                                              \
+        throw NNullPointerException(NString(#VALUE).append("is NULL"));*/
 
 #define NAssertIsBaseOf(FIRST, SECOND, MESSAGE) \
     if (is_base_of<FIRST, SECOND>::value) \
