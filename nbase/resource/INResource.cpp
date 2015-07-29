@@ -2,7 +2,7 @@
 // Created by strohhalm on 08.06.15.
 //
 
-#include "INResource.h"
+#include <nbase/resource/INResource.h>
 
 namespace nox
 {
