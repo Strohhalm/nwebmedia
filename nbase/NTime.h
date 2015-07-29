@@ -5,8 +5,7 @@
 #ifndef NWEBMEDIA_NTIME_H
 #define NWEBMEDIA_NTIME_H
 
-#include <nbase/NBase.h>
-#include "INObject.h"
+#include <nbase/INObject.h>
 
 namespace nox
 {
