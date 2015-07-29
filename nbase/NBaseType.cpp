@@ -2,7 +2,7 @@
 // Created by strohhalm on 02.06.15.
 //
 
-#include "NBaseType.h"
+#include <nbase/NBaseType.h>
 
 namespace nox
 {
