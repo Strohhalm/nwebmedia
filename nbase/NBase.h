@@ -20,32 +20,11 @@
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 
-namespace bfs=boost::filesystem;
-
 #include <pugixml.hpp>
 
+namespace bfs=boost::filesystem;
 using namespace std;
 using namespace std::chrono;
-
-typedef string NString;
-
-typedef char   nchar;
-typedef unsigned char nuchar;
-typedef short nshort;
-typedef unsigned short nushort;
-typedef int nint;
-typedef unsigned int nuint;
-typedef long nlong;
-typedef unsigned long nulong;
-typedef long long nlonglong;
-typedef unsigned long long nulonglong;
-typedef float nfloat;
-typedef double ndouble;
-typedef long double nlongdouble;
-typedef bool nbool;
-typedef size_t nsize;
-
-#define NXS(VALUE) NString(#VALUE)
 
 #define NOX_BASE_API
 
