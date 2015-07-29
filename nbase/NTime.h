@@ -37,6 +37,8 @@ namespace nox
         virtual const nint getMinute() const;
         virtual const nint getSecond() const;
         virtual const nint getMillisecond() const;
+        virtual void set(const nint hour, const nint minute, const nint second, const nint millisecond);
+        virtual void set(const NTime & other);
         virtual void addHours(const nint hours);
         virtual void addMinutes(const nint minutes);
         virtual void addSeconds(const nint seconds);
