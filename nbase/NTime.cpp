@@ -2,8 +2,8 @@
 // Created by strohhalm on 04.07.15.
 //
 
-#include "NTime.h"
-#include "NRuntimeException.h"
+#include <nbase/NTime.h>
+#include <nbase/NRuntimeException.h>
 
 namespace nox
 {
@@ -38,20 +38,7 @@ namespace nox
 
     NTime::NTime(const nint hour, const nint minute, const nint second, const nint millisecond) : INObject()
     {
-        if (hour < 0 && hour > 23)
-            throw NRuntimeException("Hour has to be between 0 and 23");
-        if (minute < 0 && minute > 59)
-            throw NRuntimeException("Hour has to be between 0 and 59");
-        if (second < 0 && second > 59)
-            throw NRuntimeException("Hour has to be between 0 and 59");
-        if (millisecond < 0 && millisecond > 999)
-            throw NRuntimeException("Hour has to be between 0 and 999");
-
-        m_Time.Hour = hour;
-        m_Time.Minute = minute;
-        m_Time.Second = second;
-        m_Time.Millisecond = millisecond;
-        m_tm = {0};
+        set(hour, minute, second, millisecond);
     }
 
     NTime::NTime(const ntime & time) :INObject()
@@ -106,6 +93,33 @@ namespace nox
     const nint NTime::getMillisecond() const
     {
         return m_Time.Millisecond;
+    }
+    
+    void NTime::set(const nint hour, const nint minute, const nint second, const nint millisecond)
+    {
+        if (hour < 0 && hour > 23)
+            throw NRuntimeException("Hour has to be between 0 and 23");
+        if (minute < 0 && minute > 59)
+            throw NRuntimeException("Hour has to be between 0 and 59");
+        if (second < 0 && second > 59)
+            throw NRuntimeException("Hour has to be between 0 and 59");
+        if (millisecond < 0 && millisecond > 999)
+            throw NRuntimeException("Hour has to be between 0 and 999");
+
+        m_Time.Hour = hour;
+        m_Time.Minute = minute;
+        m_Time.Second = second;
+        m_Time.Millisecond = millisecond;
+        m_tm = {0};
+    }
+    
+    void NTime::set(const NTime & other)
+    {
+        m_Time.Hour = other.m_Time.Hour;
+        m_Time.Minute = other.m_Time.Minute;
+        m_Time.Second = other.m_Time.Second;
+        m_Time.Millisecond = other.m_Time.Millisecond;
+        m_tm = {0};
     }
 
     void NTime::addHours(const nint hours)
