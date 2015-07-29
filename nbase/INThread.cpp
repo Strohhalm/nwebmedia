@@ -2,7 +2,7 @@
 // Created by strohhalm on 16.06.15.
 //
 
-#include "INThread.h"
+#include <nbase/INThread.h>
 
 namespace nox
 {
