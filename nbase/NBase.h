@@ -11,6 +11,7 @@
 #include <chrono>
 #include <regex>
 #include <csignal>
+#include <locale>
 
 #include <boost/thread.hpp>
 #include <boost/utility.hpp>
