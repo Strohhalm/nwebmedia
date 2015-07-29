@@ -19,7 +19,7 @@ namespace nox
     {
     public:
         static NDateTime getCurrentDateTime();
-        static const NDateTime INVALID;
+        static const NDateTime * INVALID;
     protected:
         NDate m_Date;
         NTime m_Time;

@@ -21,8 +21,10 @@ namespace nox
                 public:
                     NServiceClientUser(IINClientSocket * socket);
                     virtual ~NServiceClientUser();
-                    DeclareServiceClientFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, readUserByName);
                     DeclareServiceClientFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, loginUser);
+                    DeclareServiceClientFunction(NReadUserByNameResponse, NReadUserByNameRequest, readUserByName);
+                    DeclareServiceClientFunction(NCreateUserResponse, NCreateUserRequest, createUser);
+                    DeclareServiceClientFunction(NChangeUserResponse, NChangeUserRequest, changeUser);
                     virtual nint compareTo(const INObject * other) const;
                 };
             }

@@ -19,6 +19,8 @@ namespace nox
         return NTime(ctime->tm_hour, ctime->tm_min, ctime->tm_sec, millisecond);
     }
 
+    const NTime * NTime::INVALID = new NTime();
+
     NTime::NTime() : INObject()
     {
         m_Time.Hour = 0;

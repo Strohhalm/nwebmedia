@@ -20,6 +20,8 @@ namespace nox
                          ctime->tm_sec, millisecond);
     }
 
+    const NDateTime * NDateTime::INVALID = new NDateTime();
+
     NDateTime::NDateTime() : INObject(), m_Date(), m_Time()
     {
         m_tm = {0};

@@ -17,6 +17,8 @@ namespace nox
         return NDate(*ctime);
     }
 
+    const NDate * NDate::INVALID = new NDate();
+
     NDate::NDate() : INObject()
     {
         m_Date.Year = -1;

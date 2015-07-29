@@ -21,8 +21,10 @@ namespace nox
                 class INServiceClientUser
                 {
                 public:
-                    DeclareServiceClientIFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, readUserByName);
                     DeclareServiceClientIFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, loginUser);
+                    DeclareServiceClientIFunction(NReadUserByNameResponse, NReadUserByNameRequest, readUserByName);
+                    DeclareServiceClientIFunction(NCreateUserResponse, NCreateUserRequest, createUser);
+                    DeclareServiceClientIFunction(NChangeUserResponse, NChangeUserRequest, changeUser);
                 };
             }
         }

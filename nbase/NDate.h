@@ -21,7 +21,7 @@ namespace nox
     {
     public:
         static NDate getCurrentDate();
-        static const NDate INVALID;
+        static const NDate * INVALID;
     protected:
         ndate m_Date;
         tm    m_tm;

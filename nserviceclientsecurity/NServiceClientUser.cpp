@@ -21,8 +21,10 @@ namespace nox
                 {
                 }
 
-                DefineServiceClientFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, NServiceUser, NServiceClientUser, readUserByName);
                 DefineServiceClientFunction(NCheckLoginCredentialsResponse, NCheckLoginCredentialsRequest, NServiceUser, NServiceClientUser, loginUser);
+                DefineServiceClientFunction(NReadUserByNameResponse, NReadUserByNameRequest, NServiceUser, NServiceClientUser, readUserByName);
+                DefineServiceClientFunction(NCreateUserResponse, NCreateUserRequest, NServiceUser, NServiceClientUser, createUser);
+                DefineServiceClientFunction(NChangeUserResponse, NChangeUserRequest, NServiceUser, NServiceClientUser, changeUser)
 
                 nint NServiceClientUser::compareTo(const INObject * other) const
                 {
