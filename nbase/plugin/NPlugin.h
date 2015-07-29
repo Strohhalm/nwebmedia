@@ -5,11 +5,11 @@
 #ifndef NPLUGIN_H
 #define NPLUGIN_H
 
-#include <nbase/resource/INResource.h>
 #include <nbase/collection/INMap.h>
+#include <nbase/resource/INResource.h>
 
-using namespace nox::resource;
 using namespace nox::collection;
+using namespace nox::resource;
 
 namespace nox
 {
