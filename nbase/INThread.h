@@ -5,8 +5,7 @@
 #ifndef INTHREAD_H
 #define INTHREAD_H
 
-#include <nbase/NBase.h>
-#include "INObject.h"
+#include <nbase/INObject.h>
 
 namespace nox
 {
