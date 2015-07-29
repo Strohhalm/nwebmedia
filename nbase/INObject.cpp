@@ -2,7 +2,7 @@
 // Created by strohhalm on 29.05.15.
 //
 
-#include "INObject.h"
+#include <nbase/INObject.h>
 
 namespace nox
 {
