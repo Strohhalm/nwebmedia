@@ -2,8 +2,4 @@
 // Created by strohhalm on 28.06.15.
 //
 
-#include "INApplication.h"
-
-namespace nox
-{
-}
+#include <nbase/INApplication.h>
