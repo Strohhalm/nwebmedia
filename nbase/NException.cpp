@@ -2,8 +2,7 @@
 // Created by strohhalm on 27.05.15.
 //
 
-#include "NException.h"
-#include "NBaseType.h"
+#include <nbase/NException.h>
 
 namespace nox
 {
