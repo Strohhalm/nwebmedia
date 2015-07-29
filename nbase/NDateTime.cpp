@@ -104,24 +104,24 @@ namespace nox
         return m_Time.getMillisecond();
     }
     
-    virtual void set(const nint year, const nint month, const nint day)
+    void NDateTime::set(const nint year, const nint month, const nint day)
     {
         m_Date.set(year, month, day);
     }
     
-    void set(const nint year, const nint month, const nint day, const nint hour, const nint minute, const nint second, const nint millisecond)
+    void NDateTime::set(const nint year, const nint month, const nint day, const nint hour, const nint minute, const nint second, const nint millisecond)
     {
         m_Date.set(year, month, day);
         m_Time.set(hour, minute, second, millisecond);
     }
     
-    void set(const NDate & date, const NTime & time)
+    void NDateTime::set(const NDate & date, const NTime & time)
     {
         m_Date.set(date);
         m_Time.set(time);
     }
     
-    void set(const NDateTime & dateTime)
+    void NDateTime::set(const NDateTime & dateTime)
     {
         m_Date.set(dateTime.m_Date);
         m_Time.set(dateTime.m_Time);

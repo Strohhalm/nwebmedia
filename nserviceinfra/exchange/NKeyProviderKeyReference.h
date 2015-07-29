@@ -5,7 +5,7 @@
 #ifndef NWEBMEDIA_NKEYPROVIDERKEYREFERENCE_H
 #define NWEBMEDIA_NKEYPROVIDERKEYREFERENCE_H
 
-#include <nbase/NBase.h>
+#include <nbase/NTypes.h>
 
 namespace nox
 {

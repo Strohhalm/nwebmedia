@@ -1,6 +1,8 @@
 #ifndef NTYPES_H
 #define NTYPES_H
 
+#include <nbase/NBase.h>
+
 typedef string NString;
 
 typedef char   nchar;

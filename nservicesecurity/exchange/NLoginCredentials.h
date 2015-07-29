@@ -5,7 +5,7 @@
 #ifndef NWEBMEDIA_NLOGINCREDENTIALS_H
 #define NWEBMEDIA_NLOGINCREDENTIALS_H
 
-#include <nbase/NBase.h>
+#include <nbase/NTypes.h>
 
 namespace nox
 {

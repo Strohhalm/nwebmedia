@@ -198,6 +198,28 @@ namespace nox
             NReadUserByNameResponse * NServiceUser::readUserByName(NReadUserByNameRequest * input)
             {
                 NReadUserByNameResponse * response = NULL;
+                INTypedResultSet<NSecUserModel> * resultSet = NULL;
+                NSecUserModel * result = NULL;
+
+                NSecUserModelAccess access;
+
+                try
+                {
+                    response = new NReadUserByNameResponse();
+
+
+
+
+                }
+                catch (...)
+                {
+                    if (resultSet != NULL)
+                        delete resultSet;
+                    if (result != NULL)
+                        delete result;
+                    if (response != NULL)
+                        delete response;
+                }
 
                 return response;
             }

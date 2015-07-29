@@ -5,7 +5,7 @@
 #ifndef NWEBMEDIA_NLOCALISATIONVALUE_H
 #define NWEBMEDIA_NLOCALISATIONVALUE_H
 
-#include <nbase/NBase.h>
+#include <nbase/NTypes.h>
 
 namespace nox
 {
