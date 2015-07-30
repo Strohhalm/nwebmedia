@@ -5,7 +5,7 @@
 #ifndef NWEBMEDIA_INMASTERVIEW_H
 #define NWEBMEDIA_INMASTERVIEW_H
 
-#include "INView.h"
+#include <nweb/INView.h>
 
 namespace nox
 {
