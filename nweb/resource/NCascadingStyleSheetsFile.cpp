@@ -2,7 +2,7 @@
 // Created by strohhalm on 18.07.15.
 //
 
-#include "NCascadingStyleSheetsFile.h"
+#include <nweb/resource/NCascadingStyleSheetsFile.h>
 
 namespace nox
 {
