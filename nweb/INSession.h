@@ -28,6 +28,8 @@ namespace nox
             virtual const NInteger & getUserId();
             virtual void navigateByRule(const NString & currentView, const NString & outcome);
             virtual void notify(const Wt::WEvent& e);
+        protected:
+            virtual Wt::WWidget * createErrorWidget();
         };
     }
 }
