@@ -7,11 +7,6 @@
 
 #include <nbase/INObject.h>
 #include <nweb/NWeb.h>
-#include <nweb/config/NNavigationConfigCache.h>
-#include <nweb/resource/NCascadingStyleSheetsFile.h>
-
-using namespace nox::web::configuration;
-using namespace nox::web::resource;
 
 namespace nox
 {
