@@ -40,27 +40,28 @@ namespace nox
 
             void NLocalisationProvider::load()
             {
-                INServiceClientLocalisation * serviceClient = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientLocalisation>("NServiceClientLocalisation");
-                if (serviceClient != NULL)
+                INServiceClientLocalisation * serviceClient = NULL; 
+                NLocalisationRequest  * request  = NULL;
+                NLocalisationResponse * response = NULL;
+                try
                 {
-                    NLocalisationRequest  * request  = NULL;
-                    NLocalisationResponse * response = NULL;
-                    try
+                    serviceClient = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientLocalisation>("NServiceClientLocalisation");
+                    if (serviceClient != NULL)
                     {
                         NUnsignedLong from(0);
                         NUnsignedLong count(100);
-
+    
                         request = new NLocalisationRequest();
-
+    
                         do
                         {
                             if (response != NULL)
                                 delete response;
                             response = NULL;
-
+    
                             request->getPortion().setFrom(from);
                             request->getPortion().setCount(count);
-
+    
                             response = serviceClient->readLocalisation(request);
                             if (response != NULL)
                             {
@@ -71,29 +72,33 @@ namespace nox
                                     {
                                         if (!m_Cache->contains(entry->getLocale()))
                                             m_Cache->add(entry->getLocale(), new NMap<NString, NString>());
-
+    
                                         if (m_Cache->get(entry->getLocale())->contains(entry->getName()))
                                             m_Cache->get(entry->getLocale())->remove(entry->getName());
-
+    
                                         m_Cache->get(entry->getLocale())->add(entry->getName(), entry->getText());
                                     }
                                 }
                             }
-
+    
                             from += 100;
                         } while (response->getData().getEntries().getSize() == 100);
-
+    
                         if (response != NULL)
                             delete response;
                         m_Loaded = true;
+                        
+                        serviceClient->release();
                     }
-                    catch (NException & exp)
-                    {
-                        if (request != NULL)
-                            delete request;
-                        if (response != NULL)
-                            delete response;
-                    }
+                }
+                catch (NException & exp)
+                {
+                    if (request != NULL)
+                        delete request;
+                    if (response != NULL)
+                        delete response;
+                    if (serviceClient != NULL)
+                        serviceClient->release();
                 }
             }
 
