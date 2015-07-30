@@ -181,11 +181,7 @@ namespace nox
             {
                 prepare();
 
-                if (m_PreparedStatement->execute())
-                {
-                    return m_PreparedStatement->getUpdateCount();
-                }
-                return -1;
+                return m_PreparedStatement->executeUpdate();
             }
 
             nbool NMySqlPreparedStatement::executeQuery()

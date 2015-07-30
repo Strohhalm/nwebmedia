@@ -64,7 +64,7 @@ namespace nox
                     
                     response->Head.Control.Size = sizeof(_IINServiceResponse);
                     response->Head.Error.Code = 12;
-                    message.copy(response.Head.Error.Message, message.length());
+                    message.copy(response->Head.Error.Message, message.length());
                     
                     boost::asio::write(*m_Socket,
                                        boost::asio::buffer(response, response->Head.Control.Size),

@@ -6,6 +6,7 @@
 #define NWEBMEDIA_INSESSION_H
 
 #include <nbase/INObject.h>
+#include <nbase/NBaseType.h>
 #include <nweb/NWeb.h>
 
 namespace nox
