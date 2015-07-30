@@ -2,9 +2,12 @@
 // Created by strohhalm on 30.06.15.
 //
 
-#include "INSession.h"
-#include "NViewProvider.h"
-#include "NNavigationProvider.h"
+#include <nweb/INSession.h>
+#include <nweb/NViewProvider.h>
+#include <nweb/NNavigationProvider.h>
+#include <nweb/resource/NCascadingStyleSheetsFile.h>
+
+using namespace nox::web::resource;
 
 namespace nox
 {
