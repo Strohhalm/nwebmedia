@@ -54,6 +54,22 @@ namespace nox
                                        boost::asio::buffer(response, response->Head.Control.Size),
                                        errCode);
                 }
+                catch (...)
+                {
+                    NString message("Unknown Error");
+                        
+                    if (response == NULL)
+                        response = new _IINServiceResponse();
+                    memset(response, 0, sizeof(_IINServiceResponse));
+                    
+                    response->Head.Control.Size = sizeof(_IINServiceResponse);
+                    response->Head.Error.Code = 12;
+                    message.copy(response.Head.Error.Message, message.length());
+                    
+                    boost::asio::write(*m_Socket,
+                                       boost::asio::buffer(response, response->Head.Control.Size),
+                                       errCode);
+                }
                 delete response;
                 delete this;
             }
