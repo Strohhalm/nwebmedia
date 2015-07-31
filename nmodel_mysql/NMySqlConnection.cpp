@@ -33,10 +33,16 @@ namespace nox
             void NMySqlConnection::connect()
             {
                 close();
-
-                m_Connection = m_Driver->connect((*m_Host).append(":").append(NUnsignedShort::toString(*m_Port)), *m_User, *m_Password);
-                m_Connection->setAutoCommit(false);
-                m_Connection->setSchema(*m_Database);
+                try 
+                {
+                    m_Connection = m_Driver->connect((*m_Host).append(":").append(NUnsignedShort::toString(*m_Port)), *m_User, *m_Password);
+                    m_Connection->setAutoCommit(false);
+                    m_Connection->setSchema(*m_Database);
+                } 
+                catch (SQLException  & sexp) 
+                {
+                    throw NRuntimeException(sexp.what());
+                }
             }
 
             void NMySqlConnection::rollback()
@@ -45,9 +51,15 @@ namespace nox
                 {
                     if (!m_Connection->isClosed())
                     {
-                        m_Connection->rollback();
-                        m_Connection->close();
-
+                        try
+                        {
+                            m_Connection->rollback();
+                            m_Connection->close();
+                        } 
+                        catch (SQLException  & sexp) 
+                        {
+                            throw NRuntimeException(sexp.what());
+                        }
                         delete m_Connection;
                         m_Connection = NULL;
                     }
@@ -60,9 +72,15 @@ namespace nox
                 {
                     if (!m_Connection->isClosed())
                     {
-                        m_Connection->commit();
-                        m_Connection->close();
-
+                        try 
+                        {
+                            m_Connection->commit();
+                            m_Connection->close();
+                        } 
+                        catch (SQLException  & sexp) 
+                        {
+                            throw NRuntimeException(sexp.what());
+                        }
                         delete m_Connection;
                         m_Connection = NULL;
                     }
@@ -75,8 +93,14 @@ namespace nox
                 {
                     if (!m_Connection->isClosed())
                     {
-                        m_Connection->close();
-
+                        try
+                        {
+                            m_Connection->close();
+                        } 
+                        catch (SQLException  & sexp) 
+                        {
+                            throw NRuntimeException(sexp.what());
+                        }
                         delete m_Connection;
                         m_Connection = NULL;
                     }
