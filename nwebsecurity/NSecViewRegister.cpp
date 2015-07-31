@@ -2,9 +2,9 @@
 // Created by strohhalm on 12.07.15.
 //
 
-#include <nwebsecurity/NSecViewRegister.h>
 #include <nserviceclient/NServiceClientProvider.h>
 #include <nserviceclientsecurity/INServiceClientUser.h>
+#include <nwebsecurity/NSecViewRegister.h>
 
 using namespace nox::service::client;
 using namespace nox::service::client::security;
