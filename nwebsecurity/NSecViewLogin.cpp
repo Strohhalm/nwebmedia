@@ -2,9 +2,9 @@
 // Created by strohhalm on 22.06.15.
 //
 
-#include <nserviceclientsecurity/INServiceClientUser.h>
 #include <nserviceclient/NServiceClientProvider.h>
-#include "NSecViewLogin.h"
+#include <nserviceclientsecurity/INServiceClientUser.h>
+#include <nwebsecurity/NSecViewLogin.h>
 
 using namespace nox::service::client;
 using namespace nox::service::client::security;
