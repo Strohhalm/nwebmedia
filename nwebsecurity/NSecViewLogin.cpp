@@ -40,6 +40,8 @@ namespace nox
                 Wt::WLabel * labLoginPassword = NULL;
                 Wt::WPushButton * butLoginLogin = NULL;
                 Wt::WPushButton * butLoginRegister = NULL;
+                Wt::WValidator * usernameValidator = NULL;
+                Wt::WValidator * passwordValidator = NULL;
 
                 panLogin = new Wt::WPanel(this);
                 panLogin->setId("panLogin");
@@ -69,6 +71,13 @@ namespace nox
                 m_ledUsername->setStyleClass("input");
                 m_ledUsername->setMaxLength(50);
                 m_ledUsername->setPlaceholderText(localize("USERNAME"));
+                
+                usernameValidator = new Wt::WLengthValidator();
+                usernameValidator->setMandatory(true);
+                usernameValidator->setMinimumLength(6);
+                usernameValidator->setMaximumLength(50);
+                
+                m_ledUsername->setValidator(usernameValidator);
 
                 m_ledPassword = new Wt::WLineEdit(conLoginInput);
                 m_ledPassword->setId("ledLoginPassword");
@@ -76,6 +85,13 @@ namespace nox
                 m_ledPassword->setEchoMode(Wt::WLineEdit::EchoMode::Password);
                 m_ledPassword->setMaxLength(50);
                 m_ledPassword->setPlaceholderText(localize("PASSWORD"));
+                
+                passwordValidator = new Wt::WLengthValidator();
+                passwordValidator->setMandatory(true);
+                passwordValidator->setMinimumLength(6);
+                passwordValidator->setMaximumLength(50);
+                
+                m_ledPassword->setValidator(passwordValidator);
 
                 layLoginInput->addWidget(labLoginUsername);
                 layLoginInput->addWidget(m_ledUsername);
