@@ -39,7 +39,7 @@ namespace nox
                     m_Connection->setAutoCommit(false);
                     m_Connection->setSchema(*m_Database);
                 } 
-                catch (SQLException  & sexp) 
+                catch (sql::SQLException  & sexp)
                 {
                     throw NRuntimeException(sexp.what());
                 }
@@ -56,7 +56,7 @@ namespace nox
                             m_Connection->rollback();
                             m_Connection->close();
                         } 
-                        catch (SQLException  & sexp) 
+                        catch (sql::SQLException  & sexp)
                         {
                             throw NRuntimeException(sexp.what());
                         }
@@ -77,7 +77,7 @@ namespace nox
                             m_Connection->commit();
                             m_Connection->close();
                         } 
-                        catch (SQLException  & sexp) 
+                        catch (sql::SQLException  & sexp)
                         {
                             throw NRuntimeException(sexp.what());
                         }
@@ -97,7 +97,7 @@ namespace nox
                         {
                             m_Connection->close();
                         } 
-                        catch (SQLException  & sexp) 
+                        catch (sql::SQLException  & sexp)
                         {
                             throw NRuntimeException(sexp.what());
                         }

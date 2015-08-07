@@ -40,8 +40,8 @@ namespace nox
                 Wt::WLabel * labLoginPassword = NULL;
                 Wt::WPushButton * butLoginLogin = NULL;
                 Wt::WPushButton * butLoginRegister = NULL;
-                Wt::WValidator * usernameValidator = NULL;
-                Wt::WValidator * passwordValidator = NULL;
+                Wt::WLengthValidator * usernameValidator = NULL;
+                Wt::WLengthValidator * passwordValidator = NULL;
 
                 panLogin = new Wt::WPanel(this);
                 panLogin->setId("panLogin");

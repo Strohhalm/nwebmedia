@@ -17,5 +17,6 @@
 #include <Wt/WTemplate>
 #include <Wt/WWidget>
 #include <Wt/WPanel>
+#include <Wt/WLengthValidator>
 
 #endif //NWEB_H

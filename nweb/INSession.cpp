@@ -73,7 +73,7 @@ namespace nox
             {
                 root()->clear();
                 root()->addWidget(view);
-                root()->addWidget(createErrorWidget());
+                //root()->addWidget(createErrorWidget());
             }
         }
 
@@ -91,7 +91,7 @@ namespace nox
         
         Wt::WWidget * INSession::createErrorWidget()
         {
-            
+            return NULL;
         }
     }
 }
