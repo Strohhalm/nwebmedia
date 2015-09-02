@@ -99,7 +99,7 @@ namespace nox
                             }
                             if (factory != NULL)
                             {
-                                m_FactoryMap->add(config->getFactory(), factory);
+                                m_FactoryMap->add(config->getName(), factory);
                             }
                             else
                             {
@@ -136,7 +136,7 @@ namespace nox
                 INViewFactory * factory = m_FactoryMap->get(config->getFactory());
                 if (factory != NULL)
                 {
-                    INView * view = factory->createView(viewName);
+                    INView * view = factory->createView(config->getView());
                     if (view != NULL)
                         view->initialize();
                     return view;

@@ -48,9 +48,9 @@ namespace nox
                                 for (nlong i = 0; i < configList->getSize(); i++)
                                 {
                                     NServiceClientConfig * config = configList->get(i);
-                                    if (!m_ConfigurationCache->contains(config->getServiceClient()))
+                                    if (!m_ConfigurationCache->contains(config->getName()))
                                     {
-                                        m_ConfigurationCache->add(config->getServiceClient(), config);
+                                        m_ConfigurationCache->add(config->getName(), config);
                                     }
                                     else
                                     {

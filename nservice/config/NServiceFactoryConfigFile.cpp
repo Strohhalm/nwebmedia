@@ -57,6 +57,10 @@ namespace nox
                         {
                             if (NString("name").compare(setting.name()) == 0)
                             {
+                                config->setName(setting.child_value());
+                            }
+                            else if (NString("factory").compare(setting.name()) == 0)
+                            {
                                 config->setFactory(setting.child_value());
                             }
                             else if (NString("component").compare(setting.name()) == 0)
@@ -69,9 +73,10 @@ namespace nox
                             }
                         }
                     }
-                    if (config->getFactory().empty()
-                            || config->getComponent().empty()
-                            || config->getLibrary().empty())
+                    if (config->getName().empty()
+                        || config->getFactory().empty()
+                        || config->getComponent().empty()
+                        || config->getLibrary().empty())
                     {
                         throw NRuntimeException("Service factory configuration is incomplete");
                     }

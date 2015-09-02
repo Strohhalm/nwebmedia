@@ -129,7 +129,7 @@ namespace nox
                             }
                             if (factory != NULL)
                             {
-                                m_FactoryMap->add(config->getFactory(), factory);
+                                m_FactoryMap->add(config->getName(), factory);
                             }
                             else
                             {
@@ -163,7 +163,7 @@ namespace nox
                             INService * socket = factory->createService(*config);
                             if (socket != NULL)
                             {
-                                m_ServiceMap->add(config->getService(), socket);
+                                m_ServiceMap->add(config->getName(), socket);
                             }
                             else
                             {

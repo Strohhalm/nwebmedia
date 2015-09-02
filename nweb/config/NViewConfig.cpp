@@ -13,13 +13,15 @@ namespace nox
         {
             NViewConfig::NViewConfig()
             {
+                m_Name = new NString();
                 m_View = new NString();
                 m_Component = new NString();
                 m_Factory = new NString();
             }
 
-            NViewConfig::NViewConfig(const NString & view, const NString & component, const NString & factory)
+            NViewConfig::NViewConfig(const NString & name, const NString & view, const NString & component, const NString & factory)
             {
+                m_Name = new NString(name);
                 m_View = new NString(view);
                 m_Component = new NString(component);
                 m_Factory = new NString(factory);
@@ -27,6 +29,7 @@ namespace nox
 
             NViewConfig::NViewConfig(const NViewConfig & other)
             {
+                m_Name = new NString(*other.m_Name);
                 m_View = new NString(*other.m_View);
                 m_Component = new NString(*other.m_Component);
                 m_Factory = new NString(*other.m_Factory);
@@ -34,12 +37,24 @@ namespace nox
 
             NViewConfig::~NViewConfig()
             {
+                if (m_Name != NULL)
+                    delete m_Name;
                 if (m_View != NULL)
                     delete m_View;
                 if (m_Component != NULL)
                     delete m_Component;
                 if (m_Factory != NULL)
                     delete m_Factory;
+            }
+
+            void NViewConfig::setName(const NString & name)
+            {
+                m_Name->assign(name);
+            }
+
+            const NString & NViewConfig::getName() const
+            {
+                return *m_Name;
             }
 
             void NViewConfig::setView(const NString & view)
@@ -83,11 +98,14 @@ namespace nox
                     if (obj != NULL)
                     {
                         nint result = 0;
-                        if ((result = getView().compare(obj->getView())) == 0)
+                        if ((result = getName().compare(obj->getName())) == 0)
                         {
-                            if ((result = getComponent().compare(obj->getComponent())) == 0)
+                            if ((result = getView().compare(obj->getView())) == 0)
                             {
-                                result = getFactory().compare(obj->getFactory());
+                                if ((result = getComponent().compare(obj->getComponent())) == 0)
+                                {
+                                    result = getFactory().compare(obj->getFactory());
+                                }
                             }
                         }
                         return result;

@@ -49,9 +49,9 @@ namespace nox
                             config = configList->get(i);
                             if (config != NULL)
                             {
-                                if (!m_ConfigurationCache->contains(config->getService()))
+                                if (!m_ConfigurationCache->contains(config->getName()))
                                 {
-                                    m_ConfigurationCache->add(config->getService(), config);
+                                    m_ConfigurationCache->add(config->getName(), config);
                                 }
                                 else
                                 {

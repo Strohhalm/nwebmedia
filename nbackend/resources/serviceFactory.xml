@@ -1,11 +1,13 @@
 <factories>
     <factory>
-        <name>NServiceSecurityFactory</name>
+        <name>ServiceSecurityFactory</name>
+        <factory>NServiceSecurityFactory</factory>
         <component>security</component>
         <library>NServiceSecurity.so</library>
     </factory>
     <factory>
-        <name>NServiceInfraFactory</name>
+        <name>ServiceInfraFactory</name>
+        <factory>NServiceInfraFactory</factory>
         <component>infrastructure</component>
         <library>NServiceInfra.so</library>
     </factory>

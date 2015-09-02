@@ -48,9 +48,9 @@ namespace nox
                             {
                                 NViewConfig * config = configList->get(i);
 
-                                if (!m_ConfigurationCache->contains(config->getView()))
+                                if (!m_ConfigurationCache->contains(config->getName()))
                                 {
-                                    m_ConfigurationCache->add(config->getView(), config);
+                                    m_ConfigurationCache->add(config->getName(), config);
                                 }
                                 else
                                 {

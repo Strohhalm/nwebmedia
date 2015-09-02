@@ -14,6 +14,7 @@ namespace nox
             {
                 NServiceClientConfig::NServiceClientConfig() : INObject()
                 {
+                    m_Name = new NString();
                     m_ServiceClient = new NString();
                     m_Host = new NString();
                     m_Port = new NUnsignedShort();
@@ -22,11 +23,15 @@ namespace nox
                     m_Protocol = NProtocol::UNKNOWN;
                 }
 
-                NServiceClientConfig::NServiceClientConfig(const NString & serviceClient, const NString & host, const NUnsignedShort & port,
-                                                                         const NString & factory,
-                                                                         const NString & component,
-                                                                         const NProtocol * protocol) : INObject()
+                NServiceClientConfig::NServiceClientConfig(const NString & name,
+                                                           const NString & serviceClient,
+                                                           const NString & host,
+                                                           const NUnsignedShort & port,
+                                                           const NString & factory,
+                                                           const NString & component,
+                                                           const NProtocol * protocol) : INObject()
                 {
+                    m_Name = new NString();
                     m_ServiceClient = new NString(serviceClient);
                     m_Host = new NString(host);
                     m_Port = new NUnsignedShort(port);
@@ -37,6 +42,7 @@ namespace nox
 
                 NServiceClientConfig::NServiceClientConfig(const NServiceClientConfig & other) : INObject()
                 {
+                    m_Name = new NString(*other.m_Name);
                     m_ServiceClient = new NString(*other.m_ServiceClient);
                     m_Host = new NString(*other.m_Host);
                     m_Port = new NUnsignedShort(*other.m_Port);
@@ -47,6 +53,8 @@ namespace nox
 
                 NServiceClientConfig::~NServiceClientConfig()
                 {
+                    if (m_Name != NULL)
+                        delete m_Name;
                     if (m_ServiceClient != NULL)
                         delete m_ServiceClient;
                     if (m_Host != NULL)
@@ -57,6 +65,16 @@ namespace nox
                         delete m_Component;
                     if (m_Factory != NULL)
                         delete m_Factory;
+                }
+
+                void NServiceClientConfig::setName(const NString & name) {
+
+                    m_Name->assign(name);
+                }
+
+                const NString & NServiceClientConfig::getName() const {
+
+                    return *m_Name;
                 }
 
                 void NServiceClientConfig::setServiceClient(const NString & serviceClient)
@@ -130,17 +148,20 @@ namespace nox
                         if (obj != NULL)
                         {
                             int result = 0;
-                            if ((result = getServiceClient().compare(obj->getServiceClient())) == 0)
+                            if ((result = getName().compare(obj->getName())) == 0)
                             {
-                                if ((result = getHost().compare(obj->getHost())) == 0)
+                                if ((result = getServiceClient().compare(obj->getServiceClient())) == 0)
                                 {
-                                    if ((result = getPort().getValue() - obj->getPort().getValue()) == 0)
+                                    if ((result = getHost().compare(obj->getHost())) == 0)
                                     {
-                                        if ((result = getComponent().compare(obj->getComponent())) == 0)
+                                        if ((result = getPort().getValue() - obj->getPort().getValue()) == 0)
                                         {
-                                            if ((result = getFactory().compare(obj->getFactory())) == 0)
+                                            if ((result = getComponent().compare(obj->getComponent())) == 0)
                                             {
-                                                result = getProtocol()->getValue() - obj->getProtocol()->getValue();
+                                                if ((result = getFactory().compare(obj->getFactory())) == 0)
+                                                {
+                                                    result = getProtocol()->getValue() - obj->getProtocol()->getValue();
+                                                }
                                             }
                                         }
                                     }

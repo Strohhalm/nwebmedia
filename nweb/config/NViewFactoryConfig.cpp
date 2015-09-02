@@ -12,14 +12,15 @@ namespace nox
         {
             NViewFactoryConfig::NViewFactoryConfig()
             {
+                m_Name = new NString();
                 m_Factory = new NString();
                 m_Component = new NString();
                 m_Library = new NString();
             }
 
-            NViewFactoryConfig::NViewFactoryConfig(const NString & factory, const NString & component,
-                                                   const NString & library)
+            NViewFactoryConfig::NViewFactoryConfig(const NString & name, const NString & factory, const NString & component, const NString & library)
             {
+                m_Name = new NString(name);
                 m_Factory = new NString(factory);
                 m_Component = new NString(component);
                 m_Library = new NString(library);
@@ -27,6 +28,7 @@ namespace nox
 
             NViewFactoryConfig::NViewFactoryConfig(const NViewFactoryConfig & other)
             {
+                m_Name = new NString(*other.m_Name);
                 m_Factory = new NString(*other.m_Factory);
                 m_Component = new NString(*other.m_Component);
                 m_Library = new NString(*other.m_Library);
@@ -34,6 +36,8 @@ namespace nox
 
             NViewFactoryConfig::~NViewFactoryConfig()
             {
+                if (m_Name != NULL)
+                    delete m_Name;
                 if (m_Factory != NULL)
                     delete m_Factory;
                 if (m_Component != NULL)
@@ -42,9 +46,19 @@ namespace nox
                     delete m_Library;
             }
 
-            void NViewFactoryConfig::setFactory(const NString & name)
+            void NViewFactoryConfig::setName(const NString & name)
             {
-                m_Factory->assign(name);
+                m_Name->assign(name);
+            }
+
+            const NString & NViewFactoryConfig::getName() const
+            {
+                return *m_Name;
+            }
+
+            void NViewFactoryConfig::setFactory(const NString & factory)
+            {
+                m_Factory->assign(factory);
             }
 
             const NString & NViewFactoryConfig::getFactory() const
@@ -83,11 +97,14 @@ namespace nox
                     if (obj != NULL)
                     {
                         nint result = 0;
-                        if ((result = getFactory().compare(obj->getFactory())) == 0)
+                        if ((result = getName().compare(obj->getName())) == 0)
                         {
-                            if ((result = getComponent().compare(obj->getComponent())) == 0)
+                            if ((result = getFactory().compare(obj->getFactory())) == 0)
                             {
-                                result = getLibrary().compare(obj->getLibrary());
+                                if ((result = getComponent().compare(obj->getComponent())) == 0)
+                                {
+                                    result = getLibrary().compare(obj->getLibrary());
+                                }
                             }
                         }
                         return result;

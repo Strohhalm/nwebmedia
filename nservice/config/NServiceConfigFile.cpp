@@ -55,6 +55,10 @@ namespace nox
                         {
                             if (NString("name").compare(setting.name()) == 0)
                             {
+                                config->setName(setting.child_value());
+                            }
+                            else if (NString("service").compare(setting.name()) == 0)
+                            {
                                 config->setService(setting.child_value());
                             }
                             else if (NString("facotry").compare(setting.name()) == 0)

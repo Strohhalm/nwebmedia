@@ -1,26 +1,29 @@
 <serviceClients>
     <serviceClient>
-        <name>NServiceClientUser</name>
+        <name>ServiceClientUser</name>
+        <serviceClient>NServiceClientUser</serviceClient>
         <host>localhost</host>
         <port>35000</port>
         <component>security</component>
-        <factory>NServiceClientSecurityFactory</factory>
+        <factory>ServiceClientSecurityFactory</factory>
         <protocol>TCP</protocol>
     </serviceClient>
     <serviceClient>
-        <name>NServiceClientLocalisation</name>
+        <name>ServiceClientLocalisation</name>
+        <serviceClient>NServiceClientLocalisation</serviceClient>
         <host>localhost</host>
         <port>35001</port>
         <component>infrastructure</component>
-        <factory>NServiceClientInfraFactory</factory>
+        <factory>ServiceClientInfraFactory</factory>
         <protocol>TCP</protocol>
     </serviceClient>
     <serviceClient>
-        <name>NServiceClientKeyProvider</name>
+        <name>ServiceClientKeyProvider</name>
+        <serviceClient>NServiceClientKeyProvider</serviceClient>
         <host>localhost</host>
         <port>35002</port>
         <component>infrastructure</component>
-        <factory>NServiceClientInfraFactory</factory>
+        <factory>ServiceClientInfraFactory</factory>
         <protocol>TCP</protocol>
     </serviceClient>
 </serviceClients>

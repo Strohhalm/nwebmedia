@@ -1,23 +1,26 @@
 <services>
     <service>
-        <name>NServiceUser</name>
-        <facotry>NServiceSecurityFactory</facotry>
+        <name>ServiceUser</name>
+        <service>NServiceUser</service>
+        <facotry>ServiceSecurityFactory</facotry>
         <component>security</component>
         <port>35000</port>
         <protocol>TCP</protocol>
         <network>IPV4</network>
     </service>
     <service>
-        <name>NServiceLocalisation</name>
-        <facotry>NServiceInfraFactory</facotry>
+        <name>ServiceLocalisation</name>
+        <service>NServiceLocalisation</service>
+        <facotry>ServiceInfraFactory</facotry>
         <component>infrastructure</component>
         <port>35001</port>
         <protocol>TCP</protocol>
         <network>IPV4</network>
     </service>
     <service>
-        <name>NServiceKeyProvider</name>
-        <facotry>NServiceInfraFactory</facotry>
+        <name>ServiceKeyProvider</name>
+        <service>NServiceKeyProvider</service>
+        <facotry>ServiceInfraFactory</facotry>
         <component>infrastructure</component>
         <port>35002</port>
         <protocol>TCP</protocol>

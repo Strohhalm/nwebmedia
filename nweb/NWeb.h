@@ -18,5 +18,6 @@
 #include <Wt/WWidget>
 #include <Wt/WPanel>
 #include <Wt/WLengthValidator>
+#include <Wt/WMessageBox>
 
 #endif //NWEB_H

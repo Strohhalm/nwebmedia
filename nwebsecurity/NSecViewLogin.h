@@ -19,6 +19,8 @@ namespace nox
             protected:
                 Wt::WLineEdit * m_ledUsername;
                 Wt::WLineEdit * m_ledPassword;
+                Wt::WLengthValidator * m_valUsername;
+                Wt::WLengthValidator * m_valPassword;
             public:
                 NSecViewLogin();
                 NSecViewLogin(INView * parent);

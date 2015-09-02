@@ -12,6 +12,7 @@ namespace nox
         {
             NServiceConfig::NServiceConfig() : INObject()
             {
+                m_Name = new NString();
                 m_Service = new NString();
                 m_Factory = new NString();
                 m_Port = new NUnsignedShort();
@@ -20,8 +21,10 @@ namespace nox
                 m_Network = NNetwork::IPV4;
             }
 
-            NServiceConfig::NServiceConfig(const NString & service, const NString & factory, const NUnsignedShort & port, const NString & component, const NProtocol * protocol, const NNetwork * network) : INObject()
+            NServiceConfig::NServiceConfig(const NString & name, const NString & service, const NString & factory, const NUnsignedShort & port, const NString & component, const NProtocol * protocol,
+                                           const NNetwork * network) : INObject()
             {
+                m_Name = new NString(name);
                 m_Service = new NString(service);
                 m_Factory = new NString(factory);
                 m_Port = new NUnsignedShort(port);
@@ -32,6 +35,7 @@ namespace nox
 
             NServiceConfig::NServiceConfig(const NServiceConfig & other) : INObject()
             {
+                m_Name = new NString(*other.m_Name);
                 m_Service = new NString(*other.m_Service);
                 m_Factory = new NString(*other.m_Factory);
                 m_Port = new NUnsignedShort(*other.m_Port);
@@ -42,6 +46,8 @@ namespace nox
 
             NServiceConfig::~NServiceConfig()
             {
+                if (m_Name != NULL)
+                    delete m_Name;
                 if (m_Service != NULL)
                     delete m_Service;
                 if (m_Factory != NULL)
@@ -50,6 +56,16 @@ namespace nox
                     delete m_Port;
                 if (m_Component != NULL)
                     delete m_Component;
+            }
+
+            void NServiceConfig::setName(const NString & name)
+            {
+                m_Name->assign(name);
+            }
+
+            const NString & NServiceConfig::getName() const
+            {
+                return *m_Name;
             }
 
             void NServiceConfig::setService(const NString & service)
@@ -123,17 +139,20 @@ namespace nox
                     if (obj != NULL)
                     {
                         int result = 0;
-                        if ((result = getService().compare(obj->getService())) == 0)
+                        if ((result = getName().compare(obj->getName())) == 0)
                         {
-                            if ((result = getFactory().compare(obj->getFactory())) == 0)
+                            if ((result = getService().compare(obj->getService())) == 0)
                             {
-                                if ((result = getComponent().compare(obj->getComponent())) == 0)
+                                if ((result = getFactory().compare(obj->getFactory())) == 0)
                                 {
-                                    if ((result = getPort().getValue() - obj->getPort().getValue()) == 0)
+                                    if ((result = getComponent().compare(obj->getComponent())) == 0)
                                     {
-                                        if ((result = getNetwork()->getValue() - obj->getNetwork()->getValue()) == 0)
+                                        if ((result = getPort().getValue() - obj->getPort().getValue()) == 0)
                                         {
-                                            result = getProtocol()->getValue() - obj->getProtocol()->getValue();
+                                            if ((result = getNetwork()->getValue() - obj->getNetwork()->getValue()) == 0)
+                                            {
+                                                result = getProtocol()->getValue() - obj->getProtocol()->getValue();
+                                            }
                                         }
                                     }
                                 }

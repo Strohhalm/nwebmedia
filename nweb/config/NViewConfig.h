@@ -17,14 +17,17 @@ namespace nox
             class NViewConfig : public INObject
             {
             protected:
+                NString * m_Name;
                 NString * m_View;
                 NString * m_Component;
                 NString * m_Factory;
             public:
                 NViewConfig();
-                NViewConfig(const NString & view, const NString & component, const NString & factory);
+                NViewConfig(const NString & name, const NString & view, const NString & component, const NString & factory);
                 NViewConfig(const NViewConfig & other);
                 virtual ~NViewConfig();
+                virtual void setName(const NString & name);
+                virtual const NString & getName() const;
                 virtual void setView(const NString & view);
                 virtual const NString & getView() const;
                 virtual void setComponent(const NString & component);

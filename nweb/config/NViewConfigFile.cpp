@@ -55,6 +55,10 @@ namespace nox
                         {
                             if (NString("name").compare(setting.name()) == 0)
                             {
+                                config->setName(setting.child_value());
+                            }
+                            else if (NString("view").compare(setting.name()) == 0)
+                            {
                                 config->setView(setting.child_value());
                             }
                             else if (NString("component").compare(setting.name()) == 0)
@@ -68,9 +72,10 @@ namespace nox
                         }
                     }
 
-                    if (config->getView().empty()
-                            || config->getComponent().empty()
-                            || config->getFactory().empty())
+                    if (config->getName().empty()
+                        || config->getView().empty()
+                        || config->getComponent().empty()
+                        || config->getFactory().empty())
                     {
                         throw NRuntimeException("View configuration is incomplete");
                     }

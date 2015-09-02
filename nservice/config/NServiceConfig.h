@@ -21,6 +21,7 @@ namespace nox
             class NServiceConfig : public INObject
             {
             protected:
+                NString * m_Name;
                 NString * m_Service;
                 NString * m_Factory;
                 NUnsignedShort * m_Port;
@@ -29,9 +30,12 @@ namespace nox
                 const NNetwork * m_Network;
             public:
                 NServiceConfig();
-                NServiceConfig(const NString & service, const NString & factory, const NUnsignedShort & port, const NString & component, const NProtocol * protocol, const NNetwork * network);
+                NServiceConfig(const NString & name, const NString & service, const NString & factory, const NUnsignedShort & port, const NString & component, const NProtocol * protocol,
+                               const NNetwork * network);
                 NServiceConfig(const NServiceConfig & other);
                 virtual ~NServiceConfig();
+                virtual void setName(const NString & name);
+                virtual const NString & getName() const;
                 virtual void setService(const NString & service);
                 virtual const NString & getService() const;
                 virtual void setFactory(const NString & factory);

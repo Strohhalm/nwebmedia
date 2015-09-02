@@ -1,11 +1,13 @@
 <factories>
     <factory>
-        <name>NViewSecurityFactory</name>
+        <name>ViewSecurityFactory</name>
+        <factory>NViewSecurityFactory</factory>
         <component>security</component>
         <library>NWebSecurity</library>
     </factory>
     <factory>
-        <name>NViewMediaFactory</name>
+        <name>ViewMediaFactory</name>
+        <factory>NViewMediaFactory</factory>
         <component>media</component>
         <library>NWebMedia</library>
     </factory>

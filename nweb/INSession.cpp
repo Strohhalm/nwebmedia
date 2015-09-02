@@ -6,8 +6,10 @@
 #include <nweb/NViewProvider.h>
 #include <nweb/NNavigationProvider.h>
 #include <nweb/resource/NCascadingStyleSheetsFile.h>
+#include <nweb/localisation/NLocalisationProvider.h>
 
 using namespace nox::web::resource;
+using namespace nox::web::localisation;
 
 namespace nox
 {
@@ -15,6 +17,7 @@ namespace nox
     {
         INSession::INSession(const Wt::WEnvironment & environment) : Wt::WApplication(environment), INObject()
         {
+            m_MessageBox = NULL;
             m_UserId = new NInteger(-1);
 
             INList<NCascadingStyleSheetsFile *> * cssFileList = NULL;
@@ -54,6 +57,8 @@ namespace nox
         {
             if (m_UserId != NULL)
                 delete m_UserId;
+            if (m_MessageBox != NULL)
+                delete m_MessageBox;
         }
 
         void INSession::setUserId(const NInteger & userId)
@@ -73,8 +78,17 @@ namespace nox
             {
                 root()->clear();
                 root()->addWidget(view);
-                //root()->addWidget(createErrorWidget());
             }
+        }
+
+        const NString INSession::localize(const NString & name)
+        {
+            return localize(name, locale().name());
+        }
+
+        const NString INSession::localize(const NString & name, const NString & locale)
+        {
+            return NLocalisationProvider::getInstance()->localize(name, locale);
         }
 
         void INSession::notify(const Wt::WEvent & e)
@@ -85,12 +99,30 @@ namespace nox
             }
             catch (exception & exp)
             {
+                if (m_MessageBox == NULL)
+                {
+                    m_MessageBox = new Wt::WMessageBox();
 
+                    m_MessageBox->setId("MessageBox");
+                    m_MessageBox->setStyleClass("MessageBox Error");
+                    m_MessageBox->addButton(localize("MESSAGE_BOX_BUTTON_OK"), Wt::StandardButton::Ok);
+                    m_MessageBox->buttonClicked().connect(std::bind([=]()
+                        {
+                            if (m_MessageBox->buttonResult() == Wt::StandardButton::Ok)
+                                m_MessageBox->hide();
+                        }));
+                }
+                m_MessageBox->setText(exp.what());
+                m_MessageBox->setWindowTitle(localize("MESSAGE_BOX_TITLE_CRITICAL_ERROR"));
+                m_MessageBox->setIcon(Wt::Icon::Critical);
+                m_MessageBox->show();
             }
         }
         
         Wt::WWidget * INSession::createErrorWidget()
         {
+
+
             return NULL;
         }
     }

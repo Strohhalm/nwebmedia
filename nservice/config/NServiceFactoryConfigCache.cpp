@@ -46,9 +46,9 @@ namespace nox
                             for (nlong i = 0; i < configList->getSize(); i++)
                             {
                                 NServiceFactoryConfig * config = configList->get(i);
-                                if (!m_ConfigurationCache->contains(config->getFactory()))
+                                if (!m_ConfigurationCache->contains(config->getName()))
                                 {
-                                    m_ConfigurationCache->add(config->getFactory(), config);
+                                    m_ConfigurationCache->add(config->getName(), config);
                                 }
                                 else
                                 {

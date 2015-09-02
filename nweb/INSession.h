@@ -17,6 +17,7 @@ namespace nox
         {
         protected:
             NInteger                 * m_UserId;
+            Wt::WMessageBox          * m_MessageBox;
         public:
             INSession(const Wt::WEnvironment& environment);
             virtual ~INSession();
@@ -26,6 +27,8 @@ namespace nox
             virtual void notify(const Wt::WEvent& e);
         protected:
             virtual Wt::WWidget * createErrorWidget();
+            virtual const NString localize(const NString & name);
+            virtual const NString localize(const NString & name, const NString & locale);
         };
     }
 }

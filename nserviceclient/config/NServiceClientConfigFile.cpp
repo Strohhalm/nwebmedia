@@ -57,6 +57,10 @@ namespace nox
                             {
                                 if (NString("name").compare(setting.name()) == 0)
                                 {
+                                    config->setName(setting.child_value());
+                                }
+                                else if (NString("serviceClient").compare(setting.name()) == 0)
+                                {
                                     config->setServiceClient(setting.child_value());
                                 }
                                 else if (NString("host").compare(setting.name()) == 0)
@@ -82,12 +86,13 @@ namespace nox
                             }
                         }
 
-                        if (config->getServiceClient().empty()
-                                || config->getComponent().empty()
-                                || config->getFactory().empty()
-                                || config->getHost().empty()
-                                || config->getPort() == NUnsignedShort(0)
-                                || config->getProtocol() == NProtocol::UNKNOWN)
+                        if (config->getName().empty()
+                            || config->getServiceClient().empty()
+                            || config->getComponent().empty()
+                            || config->getFactory().empty()
+                            || config->getHost().empty()
+                            || config->getPort() == NUnsignedShort(0)
+                            || config->getProtocol() == NProtocol::UNKNOWN)
                         {
                             throw NRuntimeException("Serviceclient configuration is incomplete");
                         }

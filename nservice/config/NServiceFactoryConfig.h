@@ -16,14 +16,17 @@ namespace nox
             class NServiceFactoryConfig : public INObject
             {
             protected:
+                NString * m_Name;
                 NString * m_Factory;
                 NString * m_Component;
                 NString * m_Library;
             public:
                 NServiceFactoryConfig();
-                NServiceFactoryConfig(const NString & name, const NString & componentName, const NString & libraryName);
+                NServiceFactoryConfig(const NString & name, const NString & factory, const NString & componentName, const NString & libraryName);
                 NServiceFactoryConfig(const NServiceFactoryConfig & other);
                 virtual ~NServiceFactoryConfig();
+                virtual void setName(const NString & name);
+                virtual const NString & getName() const;
                 virtual void setFactory(const NString & factory);
                 virtual const NString & getFactory() const;
                 virtual void setComponent(const NString & component);

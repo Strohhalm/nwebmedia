@@ -45,7 +45,7 @@ namespace nox
                 NLocalisationResponse * response = NULL;
                 try
                 {
-                    serviceClient = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientLocalisation>("NServiceClientLocalisation");
+                    serviceClient = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientLocalisation>("ServiceClientLocalisation");
                     if (serviceClient != NULL)
                     {
                         NUnsignedLong from(0);

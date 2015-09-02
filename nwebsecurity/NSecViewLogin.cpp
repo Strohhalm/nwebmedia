@@ -40,8 +40,6 @@ namespace nox
                 Wt::WLabel * labLoginPassword = NULL;
                 Wt::WPushButton * butLoginLogin = NULL;
                 Wt::WPushButton * butLoginRegister = NULL;
-                Wt::WLengthValidator * usernameValidator = NULL;
-                Wt::WLengthValidator * passwordValidator = NULL;
 
                 panLogin = new Wt::WPanel(this);
                 panLogin->setId("panLogin");
@@ -71,13 +69,13 @@ namespace nox
                 m_ledUsername->setStyleClass("input");
                 m_ledUsername->setMaxLength(50);
                 m_ledUsername->setPlaceholderText(localize("USERNAME"));
+
+                m_valUsername = new Wt::WLengthValidator();
+                m_valUsername->setMandatory(true);
+                m_valUsername->setMinimumLength(6);
+                m_valUsername->setMaximumLength(50);
                 
-                usernameValidator = new Wt::WLengthValidator();
-                usernameValidator->setMandatory(true);
-                usernameValidator->setMinimumLength(6);
-                usernameValidator->setMaximumLength(50);
-                
-                m_ledUsername->setValidator(usernameValidator);
+                m_ledUsername->setValidator(m_valUsername);
 
                 m_ledPassword = new Wt::WLineEdit(conLoginInput);
                 m_ledPassword->setId("ledLoginPassword");
@@ -86,12 +84,12 @@ namespace nox
                 m_ledPassword->setMaxLength(50);
                 m_ledPassword->setPlaceholderText(localize("PASSWORD"));
                 
-                passwordValidator = new Wt::WLengthValidator();
-                passwordValidator->setMandatory(true);
-                passwordValidator->setMinimumLength(6);
-                passwordValidator->setMaximumLength(50);
+                m_valPassword = new Wt::WLengthValidator();
+                m_valPassword->setMandatory(true);
+                m_valPassword->setMinimumLength(6);
+                m_valPassword->setMaximumLength(50);
                 
-                m_ledPassword->setValidator(passwordValidator);
+                m_ledPassword->setValidator(m_valPassword);
 
                 layLoginInput->addWidget(labLoginUsername);
                 layLoginInput->addWidget(m_ledUsername);
@@ -127,32 +125,66 @@ namespace nox
 
             void NSecViewLogin::onLogin()
             {
-                INServiceClientUser * client = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>("NServiceClientUser");
-
-                if (client != NULL)
+                Wt::WValidator::Result usrValRes = m_valUsername->validate(m_ledUsername->text());
+                Wt::WValidator::Result pasValRes = m_valPassword->validate(m_ledPassword->text());
+                if (usrValRes.state() == Wt::WValidator::Valid &&
+                    pasValRes.state() == Wt::WValidator::Valid)
                 {
-                    NCheckLoginCredentialsRequest  * request  = new NCheckLoginCredentialsRequest();
+                    INServiceClientUser * client = NULL;
+                    NCheckLoginCredentialsRequest  * request  = NULL;
                     NCheckLoginCredentialsResponse * response = NULL;
-
-                    request->getData().setUsername(m_ledUsername->text().toUTF8());
-                    request->getData().setPassword(m_ledPassword->text().toUTF8());
-
-                    response = client->loginUser(request);
-
-                    if (response->getData().isOk())
+                    try
                     {
-                        getSession()->setUserId(response->getData().getUserId());
+                        client = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>("NServiceClientUser");
 
-                        navigate("SUCCESS");
+                        if (client != NULL)
+                        {
+                            request = new NCheckLoginCredentialsRequest();
+
+                            request->getData().setUsername(m_ledUsername->text().toUTF8());
+                            request->getData().setPassword(m_ledPassword->text().toUTF8());
+
+                            response = client->loginUser(request);
+
+                            if (response->getData().isOk())
+                            {
+                                getSession()->setUserId(response->getData().getUserId());
+
+                                navigate("SUCCESS");
+                            }
+
+                            delete response;
+                            delete request;
+
+                            client->release();
+                        }
+                        else
+                        {
+                            throw NRuntimeException("No Service available");
+                        }
                     }
-
-                    delete response;
-                    delete request;
-                    client->release();
+                    catch (...)
+                    {
+                        if (request != NULL)
+                            delete request;
+                        if (response != NULL)
+                            delete response;
+                        if (client != NULL)
+                            client->release();
+                        throw;
+                    }
                 }
                 else
                 {
+                    NString usrValResMes = "";
+                    NString pasValResMes = "";
 
+                    if (usrValRes.state() != Wt::WValidator::Valid)
+                        usrValResMes = usrValRes.message().toUTF8();
+                    if (pasValRes.state() != Wt::WValidator::Valid)
+                        pasValResMes = pasValRes.message().toUTF8();
+
+                    throw NRuntimeException(usrValResMes + "\n" + pasValResMes);
                 }
             }
 

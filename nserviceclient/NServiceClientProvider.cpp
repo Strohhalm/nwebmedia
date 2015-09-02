@@ -137,7 +137,7 @@ namespace nox
                                     }
                                     if (factory != NULL)
                                     {
-                                        m_FactoryMap->add(config->getFactory(), factory);
+                                        m_FactoryMap->add(config->getName(), factory);
                                     }
                                     else
                                     {

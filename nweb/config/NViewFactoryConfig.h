@@ -16,14 +16,17 @@ namespace nox
             class NViewFactoryConfig : public INObject
             {
             protected:
+                NString * m_Name;
                 NString * m_Factory;
                 NString * m_Component;
                 NString * m_Library;
             public:
                 NViewFactoryConfig();
-                NViewFactoryConfig(const NString & factory, const NString & component, const NString & library);
+                NViewFactoryConfig(const NString & name, const NString & factory, const NString & component, const NString & library);
                 NViewFactoryConfig(const NViewFactoryConfig & other);
                 virtual ~NViewFactoryConfig();
+                virtual void setName(const NString & name);
+                virtual const NString & getName() const;
                 virtual void setFactory(const NString & factory);
                 virtual const NString & getFactory() const;
                 virtual void setComponent(const NString & component);

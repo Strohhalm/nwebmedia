@@ -1,28 +1,28 @@
 <navigations>
     <navigation>
-        <view>NSecViewLogin</view>
+        <view>ViewLogin</view>
         <initial>true</initial>
         <rules>
             <rule>
                 <outcome>SUCCESS</outcome>
-                <view>NMedViewDashBoard</view>
+                <view>ViewMediaDashBoard</view>
             </rule>
             <rule>
                 <outcome>REGISTER</outcome>
-                <view>NSecViewRegister</view>
+                <view>ViewRegister</view>
             </rule>
         </rules>
     </navigation>
     <navigation>
-        <view>NSecViewRegister</view>
+        <view>ViewRegister</view>
         <rules>
             <rule>
                 <outcome>CANCEL</outcome>
-                <view>NSecViewLogin</view>
+                <view>ViewLogin</view>
             </rule>
             <rule>
                 <outcome>REGISTER</outcome>
-                <view>NSecViewLogin</view>
+                <view>ViewLogin</view>
             </rule>
         </rules>
     </navigation>
