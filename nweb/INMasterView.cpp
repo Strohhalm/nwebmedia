@@ -10,11 +10,11 @@ namespace nox
 {
     namespace web
     {
-        INMasterView::INMasterView(const NString & component, const NString & viewName) : INView(component, viewName)
+        INMasterView::INMasterView(const NString & component) : INView(component)
         {
         }
 
-        INMasterView::INMasterView(const NString & component, const NString & viewName, INView * parent) : INView(component, viewName, parent)
+        INMasterView::INMasterView(const NString & component, INView * parent) : INView(component, parent)
         {
         }
 

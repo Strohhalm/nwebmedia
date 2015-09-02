@@ -15,11 +15,11 @@ namespace nox
     {
         namespace security
         {
-            NSecViewLogin::NSecViewLogin() : INView(NCOMPONENT_WEB_SECURITY, NXS(NSecViewLogin))
+            NSecViewLogin::NSecViewLogin() : INView(NCOMPONENT_WEB_SECURITY)
             {
             }
 
-            NSecViewLogin::NSecViewLogin(INView * parent) : INView(NCOMPONENT_WEB_SECURITY, NXS(NSecViewLogin), parent)
+            NSecViewLogin::NSecViewLogin(INView * parent) : INView(NCOMPONENT_WEB_SECURITY, parent)
             {
             }
 
@@ -135,7 +135,7 @@ namespace nox
                     NCheckLoginCredentialsResponse * response = NULL;
                     try
                     {
-                        client = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>("NServiceClientUser");
+                        client = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>(NXS(ServiceClientUser));
 
                         if (client != NULL)
                         {

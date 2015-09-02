@@ -10,7 +10,7 @@ namespace nox
     {
         namespace security
         {
-            NUserAdministrationView::NUserAdministrationView() : INView(NCOMPONENT_WEB_SECURITY, NXS(NUserAdministrationView))
+            NUserAdministrationView::NUserAdministrationView() : INView(NCOMPONENT_WEB_SECURITY)
             {
             }
 

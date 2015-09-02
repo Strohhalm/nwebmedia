@@ -12,18 +12,18 @@ namespace nox
 {
     namespace web
     {
-        INView::INView(const NString & component, const NString & viewName) : INObject(), Wt::WContainerWidget()
+        INView::INView(const NString & component) : INObject(), Wt::WContainerWidget()
         {
             m_Component = new NString(component);
-            m_ViewName = new NString(viewName);
+            m_ViewName = new NString();
             m_Session = NULL;
             m_Parent = NULL;
         }
 
-        INView::INView(const NString & component, const NString & viewName, INView * parent) : INObject(), Wt::WContainerWidget(parent)
+        INView::INView(const NString & component, INView * parent) : INObject(), Wt::WContainerWidget(parent)
         {
             m_Component = new NString(component);
-            m_ViewName = new NString(viewName);
+            m_ViewName = new NString();
             m_Session = NULL;
             m_Parent = parent;
         }
@@ -34,6 +34,11 @@ namespace nox
                 delete m_Component;
             if (m_ViewName != NULL)
                 delete m_ViewName;
+        }
+
+        void INView::setViewName(const NString & name)
+        {
+            m_ViewName->assign(name);
         }
 
         const NString & INView::getViewName() const

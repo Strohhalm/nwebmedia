@@ -10,11 +10,11 @@ namespace nox
     {
         namespace media
         {
-            NMedViewDashBoard::NMedViewDashBoard() : INMasterView(NCOMPONENT_WEB_MEDIA, NXS(NMedViewDashBoard))
+            NMedViewDashBoard::NMedViewDashBoard() : INMasterView(NCOMPONENT_WEB_MEDIA)
             {
             }
 
-            NMedViewDashBoard::NMedViewDashBoard(INView * parent) : INMasterView(NCOMPONENT_WEB_MEDIA, NXS(NMedViewDashBoard), parent)
+            NMedViewDashBoard::NMedViewDashBoard(INView * parent) : INMasterView(NCOMPONENT_WEB_MEDIA, parent)
             {
             }
 

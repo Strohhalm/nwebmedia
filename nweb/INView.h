@@ -22,10 +22,11 @@ namespace nox
             INSession * m_Session;
             INView * m_Parent;
         public:
-            INView(const NString & component, const NString & viewName);
-            INView(const NString & component, const NString & viewName, INView * parent);
+            INView(const NString & component);
+            INView(const NString & component, INView * parent);
             virtual ~INView();
             virtual void initialize();
+            virtual void setViewName(const NString & name);
             virtual const NString & getViewName() const;
             virtual const NString & getComponent() const;
             virtual INSession * getSession();

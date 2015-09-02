@@ -15,11 +15,11 @@ namespace nox
     {
         namespace security
         {
-            NSecViewRegister::NSecViewRegister() : INView(NCOMPONENT_WEB_SECURITY, NXS(NSecViewRegister))
+            NSecViewRegister::NSecViewRegister() : INView(NCOMPONENT_WEB_SECURITY)
             {
             }
 
-            NSecViewRegister::NSecViewRegister(INView * parent) : INView(NCOMPONENT_WEB_SECURITY, NXS(NSecViewRegister), parent)
+            NSecViewRegister::NSecViewRegister(INView * parent) : INView(NCOMPONENT_WEB_SECURITY, parent)
             {
             }
 
@@ -178,7 +178,7 @@ namespace nox
 
                 try
                 {
-                    service = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>(NXS(NServiceClientUser));
+                    service = NServiceClientProvider::getInstance()->getServiceClient<INServiceClientUser>(NXS(ServiceClientUser));
                     if (service != NULL)
                     {
                         readUserRequest = new NReadUserByNameRequest();

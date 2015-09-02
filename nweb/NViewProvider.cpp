@@ -137,8 +137,11 @@ namespace nox
                 if (factory != NULL)
                 {
                     INView * view = factory->createView(config->getView());
+
+                    view->setViewName(config->getName());
                     if (view != NULL)
                         view->initialize();
+
                     return view;
                 }
             }

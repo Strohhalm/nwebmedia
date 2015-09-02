@@ -17,8 +17,8 @@ namespace nox
             Wt::WContainerWidget * m_Header;
             Wt::WContainerWidget * m_Content;
         public:
-            INMasterView(const NString & component, const NString & viewName);
-            INMasterView(const NString & component, const NString & viewName, INView * parent);
+            INMasterView(const NString & component);
+            INMasterView(const NString & component, INView * parent);
             virtual ~INMasterView();
             virtual void initialize();
             virtual void setContentAreaStyleClass(const NString & styleClass);
