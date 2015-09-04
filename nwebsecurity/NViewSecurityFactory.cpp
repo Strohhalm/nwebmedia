@@ -2,9 +2,9 @@
 // Created by strohhalm on 30.06.15.
 //
 
-#include "NViewSecurityFactory.h"
-#include "NSecViewLogin.h"
-#include "NSecViewRegister.h"
+#include <nwebsecurity/NViewSecurityFactory.h>
+#include <nwebsecurity/NSecViewLogin.h>
+#include <nwebsecurity/NSecViewRegister.h>
 
 namespace nox
 {

@@ -11,6 +11,7 @@
 #include <nweb/localisation/NLocalisationProvider.h>
 #include "NViewProvider.h"
 #include "NNavigationProvider.h"
+#include "NWidgetProvider.h"
 
 using namespace nox::service::client;
 using namespace nox::web::localisation;
@@ -52,12 +53,14 @@ namespace nox
             };
         protected:
             NViewProvider         * m_ViewProvider;
+            NWidgetProvider       * m_WidgetProvider;
             NLocalisationProvider * m_LocalisationProvider;
             NNavigationProvider   * m_NavigationProvider;
         protected:
             INWebApplication() : INServiceClientApplication<SINGLETON>()
             {
                 m_ViewProvider         = NViewProvider::getInstance();
+                m_WidgetProvider       = NWidgetProvider::getInstance();
                 m_LocalisationProvider = NLocalisationProvider::getInstance();
                 m_NavigationProvider   = NNavigationProvider::getInstance();
 
@@ -66,6 +69,8 @@ namespace nox
             {
                 if (m_ViewProvider != NULL)
                     NViewProvider::release();
+                if (m_WidgetProvider != NULL)
+                    NWidgetProvider::release();
                 if (m_LocalisationProvider != NULL)
                     NLocalisationProvider::release();
                 if (m_NavigationProvider != NULL)
