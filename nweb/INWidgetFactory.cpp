@@ -1,20 +1,20 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/INViewFactory.h>
+#include <nweb/INWidgetFactory.h>
 
 namespace nox
 {
     namespace web
     {
-        INViewFactory::INViewFactory(const NString & componentName, const NString & factoryName) : INObject()
+        INWidgetFactory::INWidgetFactory(const NString & componentName, const NString & factoryName) : INObject()
         {
             m_ComponentName = new NString(componentName);
             m_FactoryName = new NString(factoryName);
         }
 
-        INViewFactory::~INViewFactory()
+        INWidgetFactory::~INWidgetFactory()
         {
             if (m_ComponentName != NULL)
                 delete m_ComponentName;
@@ -22,23 +22,23 @@ namespace nox
                 delete m_FactoryName;
         }
 
-        const NString& INViewFactory::getComponentName() const
+        const NString& INWidgetFactory::getComponentName() const
         {
             return *m_ComponentName;
         }
 
-        const NString& INViewFactory::getFactoryName() const
+        const NString& INWidgetFactory::getFactoryName() const
         {
             return *m_FactoryName;
         }
 
-        nint INViewFactory::compareTo(const INObject * other) const
+        nint INWidgetFactory::compareTo(const INObject * other) const
         {
             if (this == other)
                 return 0;
             try
             {
-                const INViewFactory * obj = dynamic_cast<const INViewFactory *>(other);
+                const INWidgetFactory * obj = dynamic_cast<const INWidgetFactory *>(other);
 
                 if (obj != NULL)
                 {

@@ -27,7 +27,7 @@ namespace nox
             {
             }
 
-            void NSecViewLogin::createView()
+            void NSecViewLogin::createContent()
             {
                 Wt::WPanel * panLogin = NULL;
                 Wt::WContainerWidget * conLoginComplete = NULL;

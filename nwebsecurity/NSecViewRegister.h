@@ -31,7 +31,7 @@ namespace nox
                 virtual void onCancel();
                 virtual nint compareTo(const INObject * other) const;
             protected:
-                virtual void createView();
+                virtual void createContent();
             };
         }
     }

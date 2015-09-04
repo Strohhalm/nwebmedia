@@ -1,8 +1,8 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/config/NViewConfig.h>
+#include <nweb/config/NWidgetConfig.h>
 #include <nbase/collection/NList.h>
 
 namespace nox
@@ -11,96 +11,96 @@ namespace nox
     {
         namespace configuration
         {
-            NViewConfig::NViewConfig()
+            NWidgetConfig::NWidgetConfig()
             {
                 m_Name = new NString();
-                m_View = new NString();
+                m_Widget = new NString();
                 m_Component = new NString();
                 m_Factory = new NString();
             }
 
-            NViewConfig::NViewConfig(const NString & name, const NString & view, const NString & component, const NString & factory)
+            NWidgetConfig::NWidgetConfig(const NString & name, const NString & widget, const NString & component, const NString & factory)
             {
                 m_Name = new NString(name);
-                m_View = new NString(view);
+                m_Widget = new NString(widget);
                 m_Component = new NString(component);
                 m_Factory = new NString(factory);
             }
 
-            NViewConfig::NViewConfig(const NViewConfig & other)
+            NWidgetConfig::NWidgetConfig(const NWidgetConfig & other)
             {
                 m_Name = new NString(*other.m_Name);
-                m_View = new NString(*other.m_View);
+                m_Widget = new NString(*other.m_Widget);
                 m_Component = new NString(*other.m_Component);
                 m_Factory = new NString(*other.m_Factory);
             }
 
-            NViewConfig::~NViewConfig()
+            NWidgetConfig::~NWidgetConfig()
             {
                 if (m_Name != NULL)
                     delete m_Name;
-                if (m_View != NULL)
-                    delete m_View;
+                if (m_Widget != NULL)
+                    delete m_Widget;
                 if (m_Component != NULL)
                     delete m_Component;
                 if (m_Factory != NULL)
                     delete m_Factory;
             }
 
-            void NViewConfig::setName(const NString & name)
+            void NWidgetConfig::setName(const NString & name)
             {
                 m_Name->assign(name);
             }
 
-            const NString & NViewConfig::getName() const
+            const NString & NWidgetConfig::getName() const
             {
                 return *m_Name;
             }
 
-            void NViewConfig::setView(const NString & view)
+            void NWidgetConfig::setWidget(const NString & widget)
             {
-                m_View->assign(view);
+                m_Widget->assign(widget);
             }
 
-            const NString & NViewConfig::getView() const
+            const NString & NWidgetConfig::getWidget() const
             {
-                return *m_View;
+                return *m_Widget;
             }
 
-            void NViewConfig::setComponent(const NString & component)
+            void NWidgetConfig::setComponent(const NString & component)
             {
                 m_Component->assign(component);
             }
 
-            const NString & NViewConfig::getComponent() const
+            const NString & NWidgetConfig::getComponent() const
             {
                 return *m_Component;
             }
 
-            void NViewConfig::setFactory(const NString & factory)
+            void NWidgetConfig::setFactory(const NString & factory)
             {
                 m_Factory->assign(factory);
             }
 
-            const NString & NViewConfig::getFactory() const
+            const NString & NWidgetConfig::getFactory() const
             {
                 return *m_Factory;
             }
 
-            nint NViewConfig::compareTo(const INObject * other) const
+            nint NWidgetConfig::compareTo(const INObject * other) const
             {
                 if (this == other)
                     return 0;
                 try
                 {
-                    const NViewConfig * obj = dynamic_cast<const NViewConfig *>(other);
+                    const NWidgetConfig * obj = dynamic_cast<const NWidgetConfig *>(other);
 
                     if (obj != NULL)
                     {
                         nint result = 0;
                         if ((result = getName().compare(obj->getName())) == 0)
                         {
-                            if ((result = getView().compare(obj->getView())) == 0)
+                            if ((result = getWidget().compare(obj->getWidget())) == 0)
                             {
                                 if ((result = getComponent().compare(obj->getComponent())) == 0)
                                 {

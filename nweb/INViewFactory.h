@@ -6,7 +6,7 @@
 #define NWEBMEDIA_INVIEWFACTORY_H
 
 #include <nbase/INObject.h>
-#include "INView.h"
+#include <nweb/INView.h>
 
 namespace nox
 {

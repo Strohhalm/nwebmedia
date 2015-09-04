@@ -2,8 +2,7 @@
 // Created by strohhalm on 29.06.15.
 //
 
-#include "NViewFactoryConfigCache.h"
-#include "NViewFactoryConfigFile.h"
+#include <nweb/config/NViewFactoryConfigCache.h>
 
 namespace nox
 {
@@ -22,7 +21,7 @@ namespace nox
 
             void NViewFactoryConfigCache::load()
             {
-                INList<NViewFactoryConfigFile *> * configFileList = NResourcePool::getResources<NViewFactoryConfigFile>("viewFactory", XML_SUFFIX);
+                INList<NViewFactoryConfigFile *> * configFileList = NResourcePool::getResources<NViewFactoryConfigFile>(NXS(viewFactory), XML_SUFFIX);
                 if (configFileList != NULL)
                 {
                     for (nlong i = 0; i < configFileList->getSize(); i++)

@@ -1,8 +1,8 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/config/NViewConfigCache.h>
+#include <nweb/config/NWidgetConfigCache.h>
 
 namespace nox
 {
@@ -11,17 +11,17 @@ namespace nox
         namespace configuration
         {
 
-            NViewConfigCache::NViewConfigCache() : INConfigurationCache<NString, NViewConfig>(NXS(view))
+            NWidgetConfigCache::NWidgetConfigCache() : INConfigurationCache<NString, NWidgetConfig>(NXS(widget))
             {
             }
 
-            NViewConfigCache::~NViewConfigCache()
+            NWidgetConfigCache::~NWidgetConfigCache()
             {
             }
 
-            void NViewConfigCache::load()
+            void NWidgetConfigCache::load()
             {
-                INList<NViewConfigFile *> * configFileList = NResourcePool::getResources<NViewConfigFile>(NXS(view), XML_SUFFIX);
+                INList<NWidgetConfigFile *> * configFileList = NResourcePool::getResources<NWidgetConfigFile>(NXS(widget), XML_SUFFIX);
                 if (configFileList != NULL)
                 {
                     for (nlong i = 0; i < configFileList->getSize(); i++)
@@ -32,9 +32,9 @@ namespace nox
                 }
             }
 
-            void NViewConfigCache::loadFile(NViewConfigFile * file)
+            void NWidgetConfigCache::loadFile(NWidgetConfigFile * file)
             {
-                INList<NViewConfig *> * configList = NULL;
+                INList<NWidgetConfig *> * configList = NULL;
                 try
                 {
                     if (file != NULL)
@@ -45,7 +45,7 @@ namespace nox
                         {
                             for (nlong i = 0; i < configList->getSize(); i++)
                             {
-                                NViewConfig * config = configList->get(i);
+                                NWidgetConfig * config = configList->get(i);
 
                                 if (!m_ConfigurationCache->contains(config->getName()))
                                 {

@@ -12,26 +12,18 @@ namespace nox
 {
     namespace web
     {
-        INView::INView(const NString & component) : INObject(), Wt::WContainerWidget()
+        INView::INView(const NString & component) : INWidget(component)
         {
-            m_Component = new NString(component);
             m_ViewName = new NString();
-            m_Session = NULL;
-            m_Parent = NULL;
         }
 
-        INView::INView(const NString & component, INView * parent) : INObject(), Wt::WContainerWidget(parent)
+        INView::INView(const NString & component, INWidget * parent) : INWidget(component, parent)
         {
-            m_Component = new NString(component);
             m_ViewName = new NString();
-            m_Session = NULL;
-            m_Parent = parent;
         }
 
         INView::~INView()
         {
-            if (m_Component != NULL)
-                delete m_Component;
             if (m_ViewName != NULL)
                 delete m_ViewName;
         }
@@ -46,28 +38,6 @@ namespace nox
             return *m_ViewName;
         }
 
-        const NString & INView::getComponent() const
-        {
-            return *m_Component;
-        }
-
-        INSession * INView::getSession()
-        {
-            if (m_Session == NULL)
-                m_Session = static_cast<INSession *>(Wt::WApplication::instance());
-            return m_Session;
-        }
-
-        const NString INView::localize(const NString & name)
-        {
-            return localize(name, getSession()->locale().name());
-        }
-
-        const NString INView::localize(const NString & name, const NString & locale)
-        {
-            return NLocalisationProvider::getInstance()->localize(name, locale);
-        }
-
         void INView::navigate(const NString & outcome)
         {
             if (getParent() != NULL)
@@ -78,21 +48,6 @@ namespace nox
             {
                 getSession()->navigateByRule(getViewName(), outcome);
             }
-        }
-
-        void INView::initialize()
-        {
-            createView();
-        }
-
-        void INView::setParent(INView * parent)
-        {
-            m_Parent = parent;
-        }
-
-        INView * INView::getParent()
-        {
-            return m_Parent;
         }
 
         INView * INView::getView(const NString & viewName)

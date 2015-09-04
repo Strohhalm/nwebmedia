@@ -8,9 +8,9 @@
 #include <nbase/INSingleton.h>
 #include <nbase/collection/NMap.h>
 #include <nbase/plugin/NPlugin.h>
+#include <nweb/INViewFactory.h>
 #include <nweb/config/NViewFactoryConfigCache.h>
 #include <nweb/config/NViewConfigCache.h>
-#include "INViewFactory.h"
 
 using namespace nox::plugin;
 using namespace nox::collection;
@@ -39,6 +39,5 @@ namespace nox
         };
     }
 }
-
 
 #endif //NWEBMEDIA_NVIEWPROVIDER_H

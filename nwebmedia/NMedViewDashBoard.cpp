@@ -22,7 +22,7 @@ namespace nox
             {
             }
 
-            void NMedViewDashBoard::createView()
+            void NMedViewDashBoard::createContent()
             {
                 Wt::WPanel * panHeader = NULL;
                 Wt::WPanel * panMenu = NULL;

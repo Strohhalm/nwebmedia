@@ -2,7 +2,7 @@
 // Created by strohhalm on 29.06.15.
 //
 
-#include "NViewFactoryConfigFile.h"
+#include <nweb/config/NViewFactoryConfigFile.h>
 
 namespace nox
 {
@@ -72,7 +72,8 @@ namespace nox
                         }
                     }
 
-                    if (config->getFactory().empty()
+                    if (config->getName().empty()
+                        || config->getFactory().empty()
                         || config->getComponent().empty()
                         || config->getLibrary().empty())
                     {

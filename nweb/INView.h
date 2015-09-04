@@ -5,39 +5,25 @@
 #ifndef INVIEW_H
 #define INVIEW_H
 
-#include "NWeb.h"
-#include "INSession.h"
-#include <nbase/INObject.h>
-
+#include "INWidget.h"
 
 namespace nox
 {
     namespace web
     {
-        class INView : public INObject , public Wt::WContainerWidget
+        class INView : public INWidget
         {
         protected:
-            NString * m_ViewName;
-            NString * m_Component;
-            INSession * m_Session;
-            INView * m_Parent;
+            NString   * m_ViewName;
         public:
             INView(const NString & component);
-            INView(const NString & component, INView * parent);
+            INView(const NString & component, INWidget * parent);
             virtual ~INView();
-            virtual void initialize();
             virtual void setViewName(const NString & name);
             virtual const NString & getViewName() const;
-            virtual const NString & getComponent() const;
-            virtual INSession * getSession();
-            virtual void setParent(INView * parent);
-            virtual INView * getParent();
             virtual void navigate(const NString & outcome);
         protected:
-            virtual const NString localize(const NString & name);
-            virtual const NString localize(const NString & name, const NString & locale);
             virtual INView * getView(const NString & viewName);
-            virtual void createView() = 0;
         };
     }
 }

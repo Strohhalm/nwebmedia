@@ -28,7 +28,7 @@ namespace nox
 
             }
 
-            void NSecViewRegister::createView()
+            void NSecViewRegister::createContent()
             {
                 Wt::WPanel * panRegister = NULL;
                 Wt::WContainerWidget * conRegisterComplete = NULL;

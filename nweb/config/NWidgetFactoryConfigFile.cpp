@@ -1,8 +1,8 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/config/NViewConfigFile.h>
+#include <nweb/config/NWidgetFactoryConfigFile.h>
 
 namespace nox
 {
@@ -10,28 +10,28 @@ namespace nox
     {
         namespace configuration
         {
-            NViewConfigFile::NViewConfigFile(const NString & fileName) : INXmlInputFile<INList<NViewConfig *>>(fileName)
+            NWidgetFactoryConfigFile::NWidgetFactoryConfigFile(const NString & fileName) : INXmlInputFile<INList<NWidgetFactoryConfig *>>(fileName)
             {
             }
 
-            NViewConfigFile::~NViewConfigFile()
+            NWidgetFactoryConfigFile::~NWidgetFactoryConfigFile()
             {
             }
 
-            INList<NViewConfig *> * NViewConfigFile::parseXmlDocument(pugi::xml_document * document)
+            INList<NWidgetFactoryConfig *> * NWidgetFactoryConfigFile::parseXmlDocument(pugi::xml_document * document)
             {
-                INList<NViewConfig *> * result = new NList<NViewConfig *>();
+                INList<NWidgetFactoryConfig *> * result = new NList<NWidgetFactoryConfig *>();
 
-                pugi::xml_node views = document->child("views");
-                if (views.type() != pugi::node_null)
+                pugi::xml_node factories = document->child("factories");
+                if (factories.type() != pugi::node_null)
                 {
-                    for (pugi::xml_node view : views.children())
+                    for (pugi::xml_node factory : factories.children())
                     {
-                        if (view.type() == pugi::node_element)
+                        if (factory.type() == pugi::node_element)
                         {
-                            if (NString("view").compare(view.name()) == 0)
+                            if (NString("factory").compare(factory.name()) == 0)
                             {
-                                NViewConfig * config = parseConfigEntry(view);
+                                NWidgetFactoryConfig * config = parseConfigEntry(factory);
                                 if (config != NULL)
                                     result->add(config);
                             }
@@ -42,12 +42,12 @@ namespace nox
                 return result;
             }
 
-            NViewConfig * NViewConfigFile::parseConfigEntry(pugi::xml_node & node)
+            NWidgetFactoryConfig * NWidgetFactoryConfigFile::parseConfigEntry(pugi::xml_node & node)
             {
-                NViewConfig * config = NULL;
+                NWidgetFactoryConfig * config = NULL;
                 try
                 {
-                    config = new NViewConfig();
+                    config = new NWidgetFactoryConfig();
 
                     for (pugi::xml_node setting : node.children())
                     {
@@ -57,27 +57,27 @@ namespace nox
                             {
                                 config->setName(setting.child_value());
                             }
-                            else if (NString("view").compare(setting.name()) == 0)
+                            else if (NString("factory").compare(setting.name()) == 0)
                             {
-                                config->setView(setting.child_value());
+                                config->setFactory(setting.child_value());
                             }
                             else if (NString("component").compare(setting.name()) == 0)
                             {
                                 config->setComponent(setting.child_value());
                             }
-                            else if (NString("factory").compare(setting.name()) == 0)
+                            else if (NString("library").compare(setting.name()) == 0)
                             {
-                                config->setFactory(setting.child_value());
+                                config->setLibrary(setting.child_value());
                             }
                         }
                     }
 
                     if (config->getName().empty()
-                        || config->getView().empty()
+                        || config->getFactory().empty()
                         || config->getComponent().empty()
-                        || config->getFactory().empty())
+                        || config->getLibrary().empty())
                     {
-                        throw NRuntimeException("View configuration is incomplete");
+                        throw NRuntimeException("View factory configuration is incomplete");
                     }
                 }
                 catch (...)

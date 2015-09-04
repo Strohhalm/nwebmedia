@@ -1,8 +1,8 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/config/NViewFactoryConfig.h>
+#include <nweb/config/NWidgetFactoryConfig.h>
 
 namespace nox
 {
@@ -10,7 +10,7 @@ namespace nox
     {
         namespace configuration
         {
-            NViewFactoryConfig::NViewFactoryConfig()
+            NWidgetFactoryConfig::NWidgetFactoryConfig()
             {
                 m_Name = new NString();
                 m_Factory = new NString();
@@ -18,7 +18,7 @@ namespace nox
                 m_Library = new NString();
             }
 
-            NViewFactoryConfig::NViewFactoryConfig(const NString & name, const NString & factory, const NString & component, const NString & library)
+            NWidgetFactoryConfig::NWidgetFactoryConfig(const NString & name, const NString & factory, const NString & component, const NString & library)
             {
                 m_Name = new NString(name);
                 m_Factory = new NString(factory);
@@ -26,7 +26,7 @@ namespace nox
                 m_Library = new NString(library);
             }
 
-            NViewFactoryConfig::NViewFactoryConfig(const NViewFactoryConfig & other)
+            NWidgetFactoryConfig::NWidgetFactoryConfig(const NWidgetFactoryConfig & other)
             {
                 m_Name = new NString(*other.m_Name);
                 m_Factory = new NString(*other.m_Factory);
@@ -34,7 +34,7 @@ namespace nox
                 m_Library = new NString(*other.m_Library);
             }
 
-            NViewFactoryConfig::~NViewFactoryConfig()
+            NWidgetFactoryConfig::~NWidgetFactoryConfig()
             {
                 if (m_Name != NULL)
                     delete m_Name;
@@ -46,53 +46,53 @@ namespace nox
                     delete m_Library;
             }
 
-            void NViewFactoryConfig::setName(const NString & name)
+            void NWidgetFactoryConfig::setName(const NString & name)
             {
                 m_Name->assign(name);
             }
 
-            const NString & NViewFactoryConfig::getName() const
+            const NString & NWidgetFactoryConfig::getName() const
             {
                 return *m_Name;
             }
 
-            void NViewFactoryConfig::setFactory(const NString & factory)
+            void NWidgetFactoryConfig::setFactory(const NString & factory)
             {
                 m_Factory->assign(factory);
             }
 
-            const NString & NViewFactoryConfig::getFactory() const
+            const NString & NWidgetFactoryConfig::getFactory() const
             {
                 return *m_Factory;
             }
 
-            void NViewFactoryConfig::setComponent(const NString & component)
+            void NWidgetFactoryConfig::setComponent(const NString & component)
             {
                 m_Component->assign(component);
             }
 
-            const NString & NViewFactoryConfig::getComponent() const
+            const NString & NWidgetFactoryConfig::getComponent() const
             {
                 return *m_Component;
             }
 
-            void NViewFactoryConfig::setLibrary(const NString & library)
+            void NWidgetFactoryConfig::setLibrary(const NString & library)
             {
                 m_Library->assign(library);
             }
 
-            const NString & NViewFactoryConfig::getLibrary() const
+            const NString & NWidgetFactoryConfig::getLibrary() const
             {
                 return *m_Library;
             }
 
-            nint NViewFactoryConfig::compareTo(const INObject * other) const
+            nint NWidgetFactoryConfig::compareTo(const INObject * other) const
             {
                 if (this == other)
                     return 0;
                 try
                 {
-                    const NViewFactoryConfig * obj = dynamic_cast<const NViewFactoryConfig*>(other);
+                    const NWidgetFactoryConfig * obj = dynamic_cast<const NWidgetFactoryConfig*>(other);
 
                     if (obj != NULL)
                     {

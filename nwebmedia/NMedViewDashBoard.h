@@ -22,7 +22,7 @@ namespace nox
                 virtual ~NMedViewDashBoard();
                 virtual nint compareTo(const INObject * other) const;
             protected:
-                virtual void createView();
+                virtual void createContent();
             };
         }
     }

@@ -1,8 +1,8 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/config/NViewConfigFile.h>
+#include <nweb/config/NWidgetConfigFile.h>
 
 namespace nox
 {
@@ -10,28 +10,28 @@ namespace nox
     {
         namespace configuration
         {
-            NViewConfigFile::NViewConfigFile(const NString & fileName) : INXmlInputFile<INList<NViewConfig *>>(fileName)
+            NWidgetConfigFile::NWidgetConfigFile(const NString & fileName) : INXmlInputFile<INList<NWidgetConfig *>>(fileName)
             {
             }
 
-            NViewConfigFile::~NViewConfigFile()
+            NWidgetConfigFile::~NWidgetConfigFile()
             {
             }
 
-            INList<NViewConfig *> * NViewConfigFile::parseXmlDocument(pugi::xml_document * document)
+            INList<NWidgetConfig *> * NWidgetConfigFile::parseXmlDocument(pugi::xml_document * document)
             {
-                INList<NViewConfig *> * result = new NList<NViewConfig *>();
+                INList<NWidgetConfig *> * result = new NList<NWidgetConfig *>();
 
-                pugi::xml_node views = document->child("views");
+                pugi::xml_node views = document->child("widgets");
                 if (views.type() != pugi::node_null)
                 {
                     for (pugi::xml_node view : views.children())
                     {
                         if (view.type() == pugi::node_element)
                         {
-                            if (NString("view").compare(view.name()) == 0)
+                            if (NString("widget").compare(view.name()) == 0)
                             {
-                                NViewConfig * config = parseConfigEntry(view);
+                                NWidgetConfig * config = parseConfigEntry(view);
                                 if (config != NULL)
                                     result->add(config);
                             }
@@ -42,12 +42,12 @@ namespace nox
                 return result;
             }
 
-            NViewConfig * NViewConfigFile::parseConfigEntry(pugi::xml_node & node)
+            NWidgetConfig * NWidgetConfigFile::parseConfigEntry(pugi::xml_node & node)
             {
-                NViewConfig * config = NULL;
+                NWidgetConfig * config = NULL;
                 try
                 {
-                    config = new NViewConfig();
+                    config = new NWidgetConfig();
 
                     for (pugi::xml_node setting : node.children())
                     {
@@ -57,9 +57,9 @@ namespace nox
                             {
                                 config->setName(setting.child_value());
                             }
-                            else if (NString("view").compare(setting.name()) == 0)
+                            else if (NString("widget").compare(setting.name()) == 0)
                             {
-                                config->setView(setting.child_value());
+                                config->setWidget(setting.child_value());
                             }
                             else if (NString("component").compare(setting.name()) == 0)
                             {
@@ -73,7 +73,7 @@ namespace nox
                     }
 
                     if (config->getName().empty()
-                        || config->getView().empty()
+                        || config->getWidget().empty()
                         || config->getComponent().empty()
                         || config->getFactory().empty())
                     {

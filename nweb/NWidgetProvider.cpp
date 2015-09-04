@@ -1,33 +1,32 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/NViewProvider.h>
-#include <nweb/INMasterView.h>
+#include <nweb/NWidgetProvider.h>
 
 namespace nox
 {
     namespace web
     {
-        NViewProvider::NViewProvider() : INSingleton<NViewProvider>()
+        NWidgetProvider::NWidgetProvider() : INSingleton<NWidgetProvider>()
         {
             m_PluginMap = new NMap<NString, NPlugin *>();
-            m_FactoryMap = new NMap<NString, INViewFactory *>();
+            m_FactoryMap = new NMap<NString, INWidgetFactory *>();
 
-            m_FactoryConfigCache = new NViewFactoryConfigCache();
-            m_ViewConfigCache = new NViewConfigCache();
+            m_FactoryConfigCache = new NWidgetFactoryConfigCache();
+            m_WidgetConfigCache  = new NWidgetConfigCache();
 
             init();
         }
 
-        NViewProvider::~NViewProvider()
+        NWidgetProvider::~NWidgetProvider()
         {
             if (m_FactoryMap != NULL)
             {
                 INList<NString> * keyList = m_FactoryMap->getKeyList();
                 for (int i = 0; i < keyList->getSize(); i++)
                 {
-                    NViewFactoryConfig * config = m_FactoryConfigCache->get(keyList->get(i));
+                    NWidgetFactoryConfig * config = m_FactoryConfigCache->get(keyList->get(i));
                     if (config != NULL)
                     {
                         NPlugin * plugin = m_PluginMap->get(config->getLibrary());
@@ -35,7 +34,7 @@ namespace nox
                         {
                             try
                             {
-                                plugin->executeFunction<void, INViewFactory *>(NXS(destroyViewFactory), m_FactoryMap->get(keyList->get(i)));
+                                plugin->executeFunction<void, INWidgetFactory *>(NXS(destroyWidgetFactory), m_FactoryMap->get(keyList->get(i)));
                             }
                             catch (NException & exp)
                             {
@@ -69,17 +68,17 @@ namespace nox
             }
             if (m_FactoryConfigCache != NULL)
                 delete m_FactoryConfigCache;
-            if (m_ViewConfigCache != NULL)
-                delete m_ViewConfigCache;
+            if (m_WidgetConfigCache != NULL)
+                delete m_WidgetConfigCache;
         }
 
-        void NViewProvider::init()
+        void NWidgetProvider::init()
         {
-            INList<NViewFactoryConfig *> * configList = m_FactoryConfigCache->getAll();
+            INList<NWidgetFactoryConfig *> * configList = m_FactoryConfigCache->getAll();
 
             if (configList != NULL)
             {
-                NViewFactoryConfig * config = NULL;
+                NWidgetFactoryConfig * config = NULL;
                 for (int i = 0; i < configList->getSize(); i++)
                 {
                     config = configList->get(i);
@@ -88,10 +87,10 @@ namespace nox
                         NPlugin * plugin = loadPlugin(config->getLibrary());
                         if (plugin != NULL)
                         {
-                            INViewFactory * factory = NULL;
+                            INWidgetFactory * factory = NULL;
                             try
                             {
-                                factory = plugin->executeFunction<INViewFactory *, const NString &>(NXS(createViewFactory), config->getFactory());
+                                factory = plugin->executeFunction<INWidgetFactory *, const NString &>(NXS(createWidgetFactory), config->getFactory());
                             }
                             catch (NException & exp)
                             {
@@ -115,7 +114,7 @@ namespace nox
             }
         }
 
-        NPlugin * NViewProvider::loadPlugin(const NString & libName)
+        NPlugin * NWidgetProvider::loadPlugin(const NString & libName)
         {
             if (!m_PluginMap->contains(libName))
             {
@@ -128,33 +127,32 @@ namespace nox
             return m_PluginMap->get(libName);
         }
 
-        INView * NViewProvider::getView(const NString & viewName)
+        INWidget * NWidgetProvider::getWidget(const NString & viewName)
         {
-            NViewConfig * config = m_ViewConfigCache->get(viewName);
+            NWidgetConfig * config = m_WidgetConfigCache->get(viewName);
             if (config != NULL)
             {
-                INViewFactory * factory = m_FactoryMap->get(config->getFactory());
+                INWidgetFactory * factory = m_FactoryMap->get(config->getFactory());
                 if (factory != NULL)
                 {
-                    INView * view = factory->createView(config->getView());
+                    INWidget * widget = factory->createWidget(config->getWidget());
 
-                    view->setViewName(config->getName());
-                    if (view != NULL)
-                        view->initialize();
+                    if (widget != NULL)
+                        widget->initialize();
 
-                    return view;
+                    return widget;
                 }
             }
             return NULL;
         }
 
-        nint NViewProvider::compareTo(const INObject * other) const
+        nint NWidgetProvider::compareTo(const INObject * other) const
         {
             if (this == other)
                 return 0;
             try
             {
-                const NViewProvider * obj = dynamic_cast<const NViewProvider *>(other);
+                const NWidgetProvider * obj = dynamic_cast<const NWidgetProvider *>(other);
 
                 if (obj != NULL)
                 {

@@ -29,7 +29,7 @@ namespace nox
                 virtual void onRegister();
                 virtual nint compareTo(const INObject * other) const;
             protected:
-                virtual void createView();
+                virtual void createContent();
             };
         }
     }

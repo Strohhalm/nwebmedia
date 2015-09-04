@@ -1,8 +1,8 @@
 //
-// Created by strohhalm on 29.06.15.
+// Created by strohhalm on 04.09.15.
 //
 
-#include <nweb/config/NViewConfigCache.h>
+#include <nweb/config/NWidgetFactoryConfigCache.h>
 
 namespace nox
 {
@@ -11,17 +11,17 @@ namespace nox
         namespace configuration
         {
 
-            NViewConfigCache::NViewConfigCache() : INConfigurationCache<NString, NViewConfig>(NXS(view))
+            NWidgetFactoryConfigCache::NWidgetFactoryConfigCache() : INConfigurationCache<NString, NWidgetFactoryConfig>(NXS(widgetfactory))
             {
             }
 
-            NViewConfigCache::~NViewConfigCache()
+            NWidgetFactoryConfigCache::~NWidgetFactoryConfigCache()
             {
             }
 
-            void NViewConfigCache::load()
+            void NWidgetFactoryConfigCache::load()
             {
-                INList<NViewConfigFile *> * configFileList = NResourcePool::getResources<NViewConfigFile>(NXS(view), XML_SUFFIX);
+                INList<NWidgetFactoryConfigFile *> * configFileList = NResourcePool::getResources<NWidgetFactoryConfigFile>(NXS(widgetfactory), XML_SUFFIX);
                 if (configFileList != NULL)
                 {
                     for (nlong i = 0; i < configFileList->getSize(); i++)
@@ -32,20 +32,19 @@ namespace nox
                 }
             }
 
-            void NViewConfigCache::loadFile(NViewConfigFile * file)
+            void NWidgetFactoryConfigCache::loadFile(NWidgetFactoryConfigFile * file)
             {
-                INList<NViewConfig *> * configList = NULL;
+                INList<NWidgetFactoryConfig *> * configList = NULL;
                 try
                 {
                     if (file != NULL)
                     {
                         configList = file->parse();
-
                         if (configList != NULL)
                         {
                             for (nlong i = 0; i < configList->getSize(); i++)
                             {
-                                NViewConfig * config = configList->get(i);
+                                NWidgetFactoryConfig * config = configList->get(i);
 
                                 if (!m_ConfigurationCache->contains(config->getName()))
                                 {
